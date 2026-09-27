@@ -1,7 +1,3 @@
-// Application Configuration
-// Secrets and keys are strictly loaded from .env via the local server (/api/config)
-// If running without a server, fallback to OpenStreetMap
-
 export const CONFIG = {
   CARTO_API_KEY: '',
   CARTO_TILE_URL: '',
@@ -11,7 +7,6 @@ export const CONFIG = {
   APP_NAME: 'Mahfooz Balakot'
 };
 
-// Dynamically load runtime configuration from .env via backend API
 export async function loadRuntimeConfig() {
   try {
     const response = await fetch('/api/config');
@@ -20,7 +15,6 @@ export async function loadRuntimeConfig() {
       Object.assign(CONFIG, serverConfig);
     }
   } catch (err) {
-    // Running in static environment or offline; defaults will be used
   }
   return CONFIG;
 }

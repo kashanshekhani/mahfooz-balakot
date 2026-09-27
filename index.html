@@ -7,19 +7,15 @@
   <meta name="description" content="A lightweight, community-owned earthquake safety network for Balakot, Khyber Pakhtunkhwa. Real-time hazard mapping, safe check-in, verified shelters, and volunteer coordination.">
   <meta name="theme-color" content="#1B2A4A">
 
-  <!-- Google Fonts: Plus Jakarta Sans, Outfit, Noto Nastaliq Urdu, Baloo Bhaijaan 2 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;600;700;800&family=Noto+Nastaliq+Urdu:wght@500;700&family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Favicon / Top Tab Icon -->
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="apple-touch-icon" href="assets/favicon.svg">
 
-  <!-- Leaflet Map CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 
-  <!-- Core App Stylesheets -->
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/map.css">
@@ -27,13 +23,11 @@
 </head>
 <body>
 
-  <!-- APP ROOT SHELL -->
   <div id="app">
 
-    <!-- DESKTOP SIDEBAR -->
     <aside class="sidebar" aria-label="Main Navigation">
       <div>
-        <!-- Brand Section -->
+        
         <div class="brand-section">
           <div class="brand-logo-badge">
             <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -47,7 +41,6 @@
           </div>
         </div>
 
-        <!-- Navigation Links -->
         <nav class="sidebar-nav">
           <a class="nav-link active" data-tab="dashboard">
             <span class="nav-icon">
@@ -108,7 +101,6 @@
         </nav>
       </div>
 
-      <!-- Sidebar Footer with Language Switcher -->
       <div class="sidebar-footer">
         <div class="language-switcher-card">
           <span class="lang-label" data-i18n="navLanguage">Language / زبان</span>
@@ -126,10 +118,8 @@
       </div>
     </aside>
 
-    <!-- MAIN APP VIEWPORT -->
     <main class="main-wrapper">
 
-      <!-- MOBILE TOP HEADER (shown on screen <= 768px) -->
       <header class="mobile-header">
         <div class="mobile-brand" data-navigate="dashboard">
           <div class="brand-logo-badge" style="width:34px; height:34px;">
@@ -148,7 +138,6 @@
         </div>
       </header>
 
-      <!-- DESKTOP TOP BAR -->
       <header class="top-bar">
         <div class="top-bar-left">
           <div class="location-indicator">
@@ -172,15 +161,10 @@
         </div>
       </header>
 
-      <!-- DYNAMIC PAGE VIEWS -->
       <div class="page-container">
 
-        <!-- ================================================================ -->
-        <!-- SCREEN 1: DASHBOARD -->
-        <!-- ================================================================ -->
         <section id="page-dashboard" class="page-view" style="display: block;">
 
-          <!-- Status Banner -->
           <div id="communityStatusBanner" class="status-banner normal">
             <div class="status-banner-content">
               <div class="status-icon-badge">
@@ -202,9 +186,8 @@
             </div>
           </div>
 
-          <!-- 4 Core Quick Actions Grid (2x2 on Mobile, 4x1 on Desktop) -->
           <div class="quick-actions-grid">
-            <!-- 1. Report Hazard (Red) -->
+            
             <div class="action-card action-hazard btn-action-report" id="quickActionReport">
               <div class="action-card-header">
                 <div class="action-icon-wrap">
@@ -218,7 +201,6 @@
               </div>
             </div>
 
-            <!-- 2. I'm Safe (Green) -->
             <div class="action-card action-safe btn-action-safe" id="quickActionSafe">
               <div class="action-card-header">
                 <div class="action-icon-wrap">
@@ -232,7 +214,6 @@
               </div>
             </div>
 
-            <!-- 3. Find Safe Zone (Blue) -->
             <div class="action-card action-zone btn-action-zone" id="quickActionZone">
               <div class="action-card-header">
                 <div class="action-icon-wrap">
@@ -246,7 +227,6 @@
               </div>
             </div>
 
-            <!-- 4. Emergency Help (Purple) -->
             <div class="action-card action-help btn-action-help" id="quickActionHelp">
               <div class="action-card-header">
                 <div class="action-icon-wrap">
@@ -261,7 +241,6 @@
             </div>
           </div>
 
-          <!-- 5 Live Metrics Row (Swipeable on Mobile) -->
           <div class="metrics-row">
             <div class="metric-pill-card metric-unsafe">
               <div class="metric-icon-small">
@@ -314,11 +293,10 @@
             </div>
           </div>
 
-          <!-- 2-Column Dashboard Content -->
           <div class="dashboard-grid">
-            <!-- Left Wide Column: Map & Hazard Stream -->
+            
             <div class="dashboard-main-col">
-              <!-- Embedded Interactive Map Card -->
+              
               <div class="content-card">
                 <div class="card-header">
                   <div class="card-header-left">
@@ -345,9 +323,8 @@
               </div>
             </div>
 
-            <!-- Right Column: Resilient Balakot Hero + Preparedness + Recent Activity -->
             <div class="dashboard-side-col">
-              <!-- Authentic Balakot Resilient Community Hero Card -->
+              
               <div class="hero-community-card">
                 <img src="assets/balakot_landscape.jpg" alt="Balakot Valley" class="hero-bg-img" />
                 <div class="hero-overlay"></div>
@@ -363,7 +340,6 @@
                 </div>
               </div>
 
-              <!-- Preparedness Widget -->
               <div class="content-card">
                 <div class="card-header">
                   <div class="card-header-left">
@@ -380,12 +356,11 @@
                     <div class="progress-fill" id="prepProgressFill" style="width: 70%;"></div>
                   </div>
                   <div class="mini-checklist-list" id="miniChecklistList">
-                    <!-- Populated via JS -->
+                    
                   </div>
                 </div>
               </div>
 
-              <!-- Recent Activity Feed -->
               <div class="content-card">
                 <div class="card-header">
                   <div class="card-header-left">
@@ -395,7 +370,7 @@
                 </div>
                 <div class="card-body">
                   <div class="activity-feed-list" id="recentActivityList">
-                    <!-- Populated via JS -->
+                    
                   </div>
                 </div>
               </div>
@@ -404,9 +379,6 @@
 
         </section>
 
-        <!-- ================================================================ -->
-        <!-- SCREEN 2: FULLSCREEN RISK MAP -->
-        <!-- ================================================================ -->
         <section id="page-map" class="page-view" style="display: none;">
           <div class="mobile-subpage-header">
             <button class="btn-mobile-back" data-navigate="dashboard">
@@ -435,7 +407,7 @@
             </div>
 
             <div style="height: calc(100% - 100px); width: 100%; position: relative;">
-              <!-- Map Search Overlay -->
+              
               <div class="map-overlay-tools">
                 <input type="text" id="mapSearchInput" class="map-search-input" placeholder="Search area in Balakot..." data-i18n-placeholder="searchPlaceholder" />
                 <button class="map-recenter-btn" id="btnMapRecenter" title="Recenter on Balakot">
@@ -443,7 +415,6 @@
                 </button>
               </div>
 
-              <!-- Map Legend Overlay -->
               <div class="map-legend-card">
                 <div class="legend-item"><span class="legend-dot" style="background:#E0433D;"></span> Unsafe Building</div>
                 <div class="legend-item"><span class="legend-dot" style="background:#F0973B;"></span> Blocked Road</div>
@@ -457,9 +428,6 @@
           </div>
         </section>
 
-        <!-- ================================================================ -->
-        <!-- SCREEN 3: SAFE CHECK-IN -->
-        <!-- ================================================================ -->
         <section id="page-checkin" class="page-view" style="display: none;">
           <div class="mobile-subpage-header">
             <button class="btn-mobile-back" data-navigate="dashboard">
@@ -488,7 +456,6 @@
             </button>
           </div>
 
-          <!-- Family Circle Section -->
           <div class="content-card">
             <div class="card-header">
               <div class="card-header-left">
@@ -501,15 +468,12 @@
             </div>
             <div class="card-body">
               <div class="family-grid" id="familyMembersGrid">
-                <!-- Populated via JS -->
+                
               </div>
             </div>
           </div>
         </section>
 
-        <!-- ================================================================ -->
-        <!-- SCREEN 4: EMERGENCY CONTACTS DIRECTORY -->
-        <!-- ================================================================ -->
         <section id="page-contacts" class="page-view" style="display: none;">
           <div class="mobile-subpage-header">
             <button class="btn-mobile-back" data-navigate="dashboard">
@@ -526,7 +490,6 @@
             </p>
           </div>
 
-          <!-- Tabs -->
           <div class="tabs-nav contacts-tabs">
             <button class="tab-btn active" data-tab="all" data-i18n="tabAllContacts">All</button>
             <button class="tab-btn" data-tab="doctors" data-i18n="tabDoctors">Doctors</button>
@@ -536,13 +499,10 @@
           </div>
 
           <div class="contacts-grid" id="emergencyContactsGrid">
-            <!-- Populated via JS -->
+            
           </div>
         </section>
 
-        <!-- ================================================================ -->
-        <!-- SCREEN 5: FIND SAFE ZONE -->
-        <!-- ================================================================ -->
         <section id="page-safezones" class="page-view" style="display: none;">
           <div class="mobile-subpage-header">
             <button class="btn-mobile-back" data-navigate="dashboard">
@@ -560,13 +520,10 @@
           </div>
 
           <div class="safezones-grid" id="safeZonesDirectoryGrid">
-            <!-- Populated via JS -->
+            
           </div>
         </section>
 
-        <!-- ================================================================ -->
-        <!-- SCREEN 6: VOLUNTEERS (RESPONDER NETWORK) -->
-        <!-- ================================================================ -->
         <section id="page-volunteers" class="page-view" style="display: none;">
           <div class="mobile-subpage-header">
             <button class="btn-mobile-back" data-navigate="dashboard">
@@ -589,13 +546,10 @@
           </div>
 
           <div class="contacts-grid" id="volunteersRosterGrid">
-            <!-- Populated via JS -->
+            
           </div>
         </section>
 
-        <!-- ================================================================ -->
-        <!-- SCREEN 7: PREPAREDNESS CHECKLIST & GUIDES -->
-        <!-- ================================================================ -->
         <section id="page-preparedness" class="page-view" style="display: none;">
           <div class="mobile-subpage-header">
             <button class="btn-mobile-back" data-navigate="dashboard">
@@ -604,7 +558,7 @@
           </div>
 
           <div class="prep-guide-container">
-            <!-- Left: 10-Point Readiness Checklist -->
+            
             <div class="content-card">
               <div class="card-header">
                 <div>
@@ -618,12 +572,11 @@
                   <div class="progress-fill" id="fullPrepProgressFill" style="width: 70%;"></div>
                 </div>
                 <div id="fullChecklistList">
-                  <!-- Populated via JS -->
+                  
                 </div>
               </div>
             </div>
 
-            <!-- Right: 3-Stage Survival Guide -->
             <div class="content-card">
               <div class="card-header">
                 <div>
@@ -641,16 +594,13 @@
                   <button class="tab-btn" data-tab="after" data-i18n="guideTabAfter">3. After</button>
                 </div>
                 <div id="guideStepsContainer">
-                  <!-- Populated via JS -->
+                  
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- ================================================================ -->
-        <!-- SCREEN 8: REPORTS & UPDATES (COMMUNITY LOG) -->
-        <!-- ================================================================ -->
         <section id="page-reports" class="page-view" style="display: none;">
           <div class="mobile-subpage-header">
             <button class="btn-mobile-back" data-navigate="dashboard">
@@ -678,7 +628,7 @@
 
             <div class="card-body" style="padding-top: 0;">
               <div id="communityReportsTimeline">
-                <!-- Populated via JS -->
+                
               </div>
             </div>
           </div>
@@ -687,7 +637,6 @@
       </div>
     </main>
 
-    <!-- MOBILE BOTTOM TAB BAR (fixed thumb reach: 5 Core Tabs) -->
     <nav class="bottom-nav">
       <div class="bottom-nav-item active" data-tab="dashboard">
         <span class="b-icon">
@@ -727,9 +676,6 @@
 
   </div>
 
-  <!-- ================================================================ -->
-  <!-- MODAL: MOBILE "MORE" DRAWER -->
-  <!-- ================================================================ -->
   <div id="modalMobileMore" class="modal-backdrop">
     <div class="modal-window">
       <div class="sheet-handle-bar"></div>
@@ -780,9 +726,6 @@
     </div>
   </div>
 
-  <!-- ================================================================ -->
-  <!-- MODAL: REPORT HAZARD -->
-  <!-- ================================================================ -->
   <div id="modalReportHazard" class="modal-backdrop">
     <div class="modal-window">
       <div class="sheet-handle-bar"></div>
@@ -851,9 +794,6 @@
     </div>
   </div>
 
-  <!-- ================================================================ -->
-  <!-- MODAL: REGISTER AS VOLUNTEER -->
-  <!-- ================================================================ -->
   <div id="modalJoinVolunteer" class="modal-backdrop">
     <div class="modal-window">
       <div class="sheet-handle-bar"></div>
@@ -903,9 +843,6 @@
     </div>
   </div>
 
-  <!-- ================================================================ -->
-  <!-- MODAL: ADD FAMILY MEMBER -->
-  <!-- ================================================================ -->
   <div id="modalAddFamily" class="modal-backdrop">
     <div class="modal-window">
       <div class="sheet-handle-bar"></div>
@@ -939,9 +876,6 @@
     </div>
   </div>
 
-  <!-- ================================================================ -->
-  <!-- MODAL: EMERGENCY SOS CALL DISPATCH -->
-  <!-- ================================================================ -->
   <div id="modalEmergencySOS" class="modal-backdrop">
     <div class="modal-window">
       <div class="sheet-handle-bar"></div>
@@ -994,9 +928,6 @@
     </div>
   </div>
 
-  <!-- ================================================================ -->
-  <!-- MODAL: PRINTABLE POCKET EMERGENCY CARD -->
-  <!-- ================================================================ -->
   <div id="modalPocketCard" class="modal-backdrop">
     <div class="modal-window" style="max-width:580px;">
       <div class="sheet-handle-bar"></div>
@@ -1040,13 +971,10 @@
     </div>
   </div>
 
-  <!-- TOAST NOTIFICATION CONTAINER -->
   <div id="toastContainer"></div>
 
-  <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
-  <!-- Application Modular Scripts -->
   <script type="module" src="js/app.js"></script>
 </body>
 </html>

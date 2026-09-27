@@ -14,7 +14,6 @@ class MahfoozApp {
   }
 
   async init() {
-    // Load runtime configuration from backend / .env if available
     await loadRuntimeConfig();
 
     this.setupNavigation();
@@ -23,23 +22,18 @@ class MahfoozApp {
     this.setupQuickActions();
     this.setupGlobalEvents();
     
-    // Subscribe to state updates
     appState.subscribe((state) => {
       this.render();
     });
 
-    // Initial render
     this.render();
 
-    // Init Leaflet maps after DOM settles
     setTimeout(() => {
       this.initMaps();
     }, 200);
   }
 
-  // --- MAPS INITIALIZATION ---
   initMaps() {
-    // 1. Dashboard embedded map
     if (document.getElementById('dashboardMap') && !this.dashboardMap) {
       this.dashboardMap = new BalakotMap('dashboardMap', {
         onVerifyClick: (id) => this.handleVerifyReport(id)
@@ -48,7 +42,6 @@ class MahfoozApp {
       this.dashboardMap.renderData(appState.getState());
     }
 
-    // 2. Fullscreen Risk Map
     if (document.getElementById('fullscreenMap') && !this.fullscreenMap) {
       this.fullscreenMap = new BalakotMap('fullscreenMap', {
         onVerifyClick: (id) => this.handleVerifyReport(id),
@@ -59,9 +52,7 @@ class MahfoozApp {
     }
   }
 
-  // --- NAVIGATION ---
   setupNavigation() {
-    // Desktop navigation links
     document.querySelectorAll('.sidebar-nav .nav-link').forEach(link => {
       link.addEventListener('click', (e) => {
         const tab = link.getAttribute('data-tab');
@@ -69,7 +60,6 @@ class MahfoozApp {
       });
     });
 
-    // Mobile bottom navigation items
     document.querySelectorAll('.bottom-nav-item').forEach(item => {
       item.addEventListener('click', (e) => {
         const tab = item.getAttribute('data-tab');
@@ -81,7 +71,6 @@ class MahfoozApp {
       });
     });
 
-    // Handle deep links or buttons with data-navigate
     document.addEventListener('click', (e) => {
       const navBtn = e.target.closest('[data-navigate]');
       if (navBtn) {
@@ -91,7 +80,6 @@ class MahfoozApp {
       }
     });
 
-    // Mobile specific modal triggers
     const btnMobilePocket = document.getElementById('btnMobilePocketCard');
     if (btnMobilePocket) {
       btnMobilePocket.addEventListener('click', () => {
@@ -112,7 +100,6 @@ class MahfoozApp {
   switchTab(tabName) {
     appState.setActiveTab(tabName);
 
-    // Update nav link active states
     document.querySelectorAll('.sidebar-nav .nav-link').forEach(l => {
       l.classList.toggle('active', l.getAttribute('data-tab') === tabName);
     });
@@ -120,12 +107,10 @@ class MahfoozApp {
       b.classList.toggle('active', b.getAttribute('data-tab') === tabName);
     });
 
-    // Show active page container
     document.querySelectorAll('.page-view').forEach(p => {
       p.style.display = p.id === `page-${tabName}` ? 'block' : 'none';
     });
 
-    // Invalidate map sizes if switching to map tab
     if (tabName === 'map' && this.fullscreenMap) {
       this.fullscreenMap.invalidate();
     } else if (tabName === 'dashboard' && this.dashboardMap) {
@@ -135,7 +120,6 @@ class MahfoozApp {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // --- LANGUAGE SWITCHER ---
   setupLanguageSwitcher() {
     document.querySelectorAll('.lang-btn').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -152,33 +136,27 @@ class MahfoozApp {
     }
   }
 
-  // --- QUICK ACTION HOOKS ---
   setupQuickActions() {
-    // 1. Report Hazard Action
     document.querySelectorAll('.btn-action-report').forEach(btn => {
       btn.addEventListener('click', () => this.openModal('modalReportHazard'));
     });
 
-    // 2. I'm Safe Action
     document.querySelectorAll('.btn-action-safe').forEach(btn => {
       btn.addEventListener('click', () => {
         this.switchTab('checkin');
       });
     });
 
-    // 3. Find Safe Zone Action
     document.querySelectorAll('.btn-action-zone').forEach(btn => {
       btn.addEventListener('click', () => {
         this.switchTab('safezones');
       });
     });
 
-    // 4. Emergency Help Action / SOS
     document.querySelectorAll('.btn-action-help, .btn-sos-top, .btn-mobile-sos').forEach(btn => {
       btn.addEventListener('click', () => this.openModal('modalEmergencySOS'));
     });
 
-    // Status toggle simulation
     const btnToggleAlert = document.getElementById('btnToggleAlert');
     if (btnToggleAlert) {
       btnToggleAlert.addEventListener('click', () => {
@@ -188,7 +166,6 @@ class MahfoozApp {
     }
   }
 
-  // --- MODALS SETUP ---
   setupModals() {
     document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
       backdrop.addEventListener('click', (e) => {
@@ -205,7 +182,6 @@ class MahfoozApp {
       });
     });
 
-    // Hazard Report Form Submission
     const reportForm = document.getElementById('hazardReportForm');
     if (reportForm) {
       reportForm.addEventListener('submit', (e) => {
@@ -235,7 +211,6 @@ class MahfoozApp {
 
         this.showToast(`Report submitted: "${title}" is now visible to the community.`, 'success');
 
-        // Center fullscreen map on new report
         if (this.fullscreenMap) {
           this.fullscreenMap.renderData(appState.getState());
           this.fullscreenMap.centerOn(report.lat, report.lng, 15);
@@ -246,7 +221,6 @@ class MahfoozApp {
       });
     }
 
-    // Photo selection trigger simulation
     const btnUploadPhoto = document.getElementById('btnUploadPhoto');
     const photoInput = document.getElementById('photoInput');
     if (btnUploadPhoto && photoInput) {
@@ -262,14 +236,12 @@ class MahfoozApp {
           };
           reader.readAsDataURL(file);
         } else {
-          // Use authentic sample
           preview.innerHTML = `<img src="assets/hazard_crack.jpg" style="width:100%; height:120px; object-fit:cover; border-radius:8px; margin-top:8px;" />`;
           preview.setAttribute('data-has-photo', 'true');
         }
       });
     }
 
-    // Use Sample Photo button
     const btnUseSamplePhoto = document.getElementById('btnUseSamplePhoto');
     if (btnUseSamplePhoto) {
       btnUseSamplePhoto.addEventListener('click', () => {
@@ -279,7 +251,6 @@ class MahfoozApp {
       });
     }
 
-    // Volunteer Form Submission
     const volForm = document.getElementById('volunteerForm');
     if (volForm) {
       volForm.addEventListener('submit', (e) => {
@@ -313,7 +284,6 @@ class MahfoozApp {
       });
     }
 
-    // Add Family Member Form
     const familyForm = document.getElementById('addFamilyForm');
     if (familyForm) {
       familyForm.addEventListener('submit', (e) => {
@@ -354,9 +324,7 @@ class MahfoozApp {
     this.openModal('modalReportHazard');
   }
 
-  // --- GLOBAL EVENT DELEGATIONS ---
   setupGlobalEvents() {
-    // Safe Check-In big CTA
     const btnMarkSafeBig = document.getElementById('btnMarkSafeBig');
     if (btnMarkSafeBig) {
       btnMarkSafeBig.addEventListener('click', () => {
@@ -367,7 +335,6 @@ class MahfoozApp {
       });
     }
 
-    // Share to WhatsApp
     const btnShareWhatsApp = document.getElementById('btnShareWhatsApp');
     if (btnShareWhatsApp) {
       btnShareWhatsApp.addEventListener('click', () => {
@@ -377,7 +344,6 @@ class MahfoozApp {
       });
     }
 
-    // Interactive Checklist items click delegation
     document.addEventListener('click', (e) => {
       const row = e.target.closest('.checklist-row');
       if (row) {
@@ -388,7 +354,6 @@ class MahfoozApp {
       }
     });
 
-    // Emergency Contacts Tab filter
     document.querySelectorAll('.contacts-tabs .tab-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.contacts-tabs .tab-btn').forEach(b => b.classList.remove('active'));
@@ -398,7 +363,6 @@ class MahfoozApp {
       });
     });
 
-    // Preparedness Guide Tabs (Before / During / After)
     document.querySelectorAll('.guide-tabs .tab-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.guide-tabs .tab-btn').forEach(b => b.classList.remove('active'));
@@ -408,7 +372,6 @@ class MahfoozApp {
       });
     });
 
-    // Map Filter Chips click delegation
     document.querySelectorAll('.map-filter-bar .filter-chip').forEach(chip => {
       chip.addEventListener('click', (e) => {
         const filter = chip.getAttribute('data-filter');
@@ -427,7 +390,6 @@ class MahfoozApp {
       });
     });
 
-    // Search input for map locations
     const mapSearch = document.getElementById('mapSearchInput');
     if (mapSearch) {
       mapSearch.addEventListener('input', (e) => {
@@ -449,7 +411,6 @@ class MahfoozApp {
       });
     }
 
-    // Reports filter tabs
     document.querySelectorAll('.reports-filter-tabs .tab-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.reports-filter-tabs .tab-btn').forEach(b => b.classList.remove('active'));
@@ -459,19 +420,16 @@ class MahfoozApp {
       });
     });
 
-    // Volunteer modal trigger
     const btnOpenVolModal = document.getElementById('btnOpenVolunteerModal');
     if (btnOpenVolModal) {
       btnOpenVolModal.addEventListener('click', () => this.openModal('modalJoinVolunteer'));
     }
 
-    // Family modal trigger
     const btnOpenFamModal = document.getElementById('btnOpenAddFamilyModal');
     if (btnOpenFamModal) {
       btnOpenFamModal.addEventListener('click', () => this.openModal('modalAddFamily'));
     }
 
-    // Print pocket guide card
     const btnPrintCard = document.getElementById('btnPrintPocketCard');
     if (btnPrintCard) {
       btnPrintCard.addEventListener('click', () => this.openModal('modalPocketCard'));
@@ -492,13 +450,11 @@ class MahfoozApp {
     this.showToast('Hazard marked as resolved. Community updated.', 'info');
   }
 
-  // --- RENDER DISPATCHER ---
   render() {
     const state = appState.getState();
     const lang = state.language;
     const t = TRANSLATIONS[lang] || TRANSLATIONS.en;
 
-    // 1. Update i18n text tags
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
       if (t[key]) {
@@ -506,44 +462,23 @@ class MahfoozApp {
       }
     });
 
-    // Update active lang buttons
     document.querySelectorAll('.lang-btn').forEach(b => {
       b.classList.toggle('active', b.getAttribute('data-lang') === lang);
     });
     const mobileSelect = document.getElementById('mobileLangSelect');
     if (mobileSelect) mobileSelect.value = lang;
 
-    // 2. Render Status Banner & Pills
     this.renderStatusBanner(state, t);
-
-    // 3. Render Metrics Counters
     this.renderMetrics(state);
-
-    // 4. Render Activity Feed
     this.renderActivityFeed(state);
-
-    // 5. Render Mini & Full Checklist
     this.renderChecklist(state);
-
-    // 6. Render Safe Check-in Screen
     this.renderSafeCheckin(state, t);
-
-    // 7. Render Emergency Contacts
     this.renderContacts();
-
-    // 8. Render Safe Zones
     this.renderSafeZones(state);
-
-    // 9. Render Volunteers Roster
     this.renderVolunteers(state);
-
-    // 10. Render Guide Steps
     this.renderGuideSteps();
-
-    // 11. Render Community Reports Timeline
     this.renderCommunityReports();
 
-    // 12. Update Maps
     if (this.dashboardMap) {
       this.dashboardMap.renderData(state);
     }
@@ -633,7 +568,6 @@ class MahfoozApp {
   renderChecklist(state) {
     const metrics = appState.getMetrics();
 
-    // 1. Mini widget on dashboard
     const miniContainer = document.getElementById('miniChecklistList');
     const miniFill = document.getElementById('prepProgressFill');
     const miniPercent = document.getElementById('prepPercentText');
@@ -653,7 +587,6 @@ class MahfoozApp {
       `).join('');
     }
 
-    // 2. Full checklist on Preparedness page
     const fullContainer = document.getElementById('fullChecklistList');
     const fullFill = document.getElementById('fullPrepProgressFill');
     const fullScore = document.getElementById('fullPrepScoreBadge');
@@ -701,7 +634,6 @@ class MahfoozApp {
         : 'Tap button above to mark safe';
     }
 
-    // Render family list
     const familyGrid = document.getElementById('familyMembersGrid');
     if (familyGrid) {
       familyGrid.innerHTML = state.familyMembers.map(m => `
@@ -735,7 +667,6 @@ class MahfoozApp {
 
     let cardsHtml = '';
 
-    // If Hotlines tab or all
     if (this.currentContactTab === 'all' || this.currentContactTab === 'hotlines') {
       state.emergencyHotlines.forEach(h => {
         cardsHtml += `
@@ -823,7 +754,6 @@ class MahfoozApp {
       </div>
     `).join('');
 
-    // Attach click event for navigation to safe zone
     container.querySelectorAll('.btn-navigate-safezone').forEach(btn => {
       btn.addEventListener('click', () => {
         const lat = parseFloat(btn.getAttribute('data-lat'));
@@ -935,7 +865,6 @@ class MahfoozApp {
       </div>
     `).join('');
 
-    // Attach actions
     container.querySelectorAll('.btn-verify-report-action').forEach(btn => {
       btn.addEventListener('click', () => {
         const id = btn.getAttribute('data-id');
@@ -969,7 +898,6 @@ class MahfoozApp {
   }
 }
 
-// Global expose and launch
 window.app = new MahfoozApp();
 document.addEventListener('DOMContentLoaded', () => {
   window.app.init();

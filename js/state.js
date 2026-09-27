@@ -25,7 +25,7 @@ class StateManager {
           checklistItems: parsed.checklistItems || INITIAL_DATA.checklistItems,
           userStatus: parsed.userStatus || { isSafe: false, lastCheckIn: null, battery: '85%' },
           language: parsed.language || 'en',
-          communityStatus: parsed.communityStatus || 'normal', // 'normal' | 'alert'
+          communityStatus: parsed.communityStatus || 'normal',
           activeTab: parsed.activeTab || 'dashboard'
         };
       }
@@ -68,8 +68,6 @@ class StateManager {
     return this.state;
   }
 
-  // --- ACTIONS ---
-
   setLanguage(lang) {
     if (['en', 'ur', 'ps'].includes(lang)) {
       this.state.language = lang;
@@ -87,7 +85,6 @@ class StateManager {
   toggleCommunityStatus() {
     this.state.communityStatus = this.state.communityStatus === 'normal' ? 'alert' : 'normal';
     
-    // Add activity feed entry
     const newActivity = {
       id: 'act-' + Date.now(),
       type: 'report',
@@ -155,7 +152,6 @@ class StateManager {
 
     this.state.hazardReports.unshift(newReport);
 
-    // Add to activity feed
     const categoryLabels = {
       unsafe_building: 'Damaged Building',
       blocked_road: 'Blocked Road',
@@ -281,8 +277,6 @@ class StateManager {
       this.saveState();
     }
   }
-
-  // --- DERIVED METRICS ---
 
   getMetrics() {
     const activeHazards = this.state.hazardReports.filter(r => r.status !== 'resolved');

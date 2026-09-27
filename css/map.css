@@ -1,8 +1,3 @@
-/* ==========================================================================
-   MAHFOOZ BALAKOT - LEAFLET MAP & PIN STYLES
-   No long em dashes used.
-   ========================================================================== */
-
 .custom-leaflet-marker {
   background: transparent;
   border: none;
@@ -59,7 +54,6 @@
   100% { transform: scale(1.6); opacity: 0; }
 }
 
-/* User Location Marker */
 .user-pin-wrap {
   background: transparent;
   border: none;
@@ -89,7 +83,6 @@
   100% { transform: scale(2.8); opacity: 0; }
 }
 
-/* Map Popups */
 .leaflet-popup-content-wrapper {
   padding: 0;
   border-radius: var(--radius-lg) !important;
@@ -222,7 +215,6 @@
   color: #D97706;
 }
 
-/* Fullscreen Map Controls & Overlays */
 .map-overlay-tools {
   position: absolute;
   top: 16px;

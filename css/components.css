@@ -1,9 +1,3 @@
-/* ==========================================================================
-   MAHFOOZ BALAKOT - COMPONENT STYLES
-   No long em dashes used in text or comments.
-   ========================================================================== */
-
-/* --- Status Banner --- */
 .status-banner {
   background: var(--surface-white);
   border-radius: var(--radius-lg);
@@ -113,7 +107,6 @@
   color: var(--navy-primary);
 }
 
-/* --- Quick Action Cards (4 Core Actions) --- */
 .quick-actions-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -242,7 +235,6 @@
   color: var(--navy-primary);
 }
 
-/* --- Metrics Grid (5 Live Counters) --- */
 .metrics-row {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -296,14 +288,12 @@
   white-space: nowrap;
 }
 
-/* Specific metric colors */
 .metric-unsafe .metric-icon-small { background: var(--red-subtle); color: var(--red-alert); }
 .metric-blocked .metric-icon-small { background: var(--orange-subtle); color: var(--orange-supply); }
 .metric-safe .metric-icon-small { background: var(--green-subtle); color: var(--green-safe); }
 .metric-water .metric-icon-small { background: var(--water-subtle); color: var(--water-blue); }
 .metric-volunteers .metric-icon-small { background: var(--purple-subtle); color: var(--purple-help); }
 
-/* --- Dashboard Two-Column Grid --- */
 .dashboard-grid {
   display: grid;
   grid-template-columns: 1.55fr 1fr;
@@ -321,7 +311,6 @@
   box-sizing: border-box;
 }
 
-/* Card Container */
 .content-card {
   background: var(--surface-white);
   border-radius: var(--radius-lg);
@@ -382,7 +371,6 @@
   text-decoration: underline;
 }
 
-/* --- Interactive Map Widget (Dashboard Embedded) --- */
 .dashboard-map-wrapper {
   position: relative;
   height: 360px;
@@ -444,7 +432,6 @@
   border-color: var(--navy-primary);
 }
 
-/* --- Activity Feed Items --- */
 .activity-feed-list {
   display: flex;
   flex-direction: column;
@@ -524,7 +511,6 @@
   gap: 4px;
 }
 
-/* --- Preparedness Widget --- */
 .prep-progress-header {
   display: flex;
   align-items: center;
@@ -612,7 +598,6 @@
   color: var(--text-muted);
 }
 
-/* --- "Our Home, Our Responsibility" Hero Panel --- */
 .hero-community-card {
   position: relative;
   border-radius: var(--radius-lg);
@@ -709,9 +694,6 @@
   transform: translateY(-1px);
 }
 
-/* ==========================================================================
-   PAGE: SAFE CHECK-IN SCREEN
-   ========================================================================== */
 .checkin-hero-box {
   background: linear-gradient(135deg, #0E3E26 0%, var(--green-safe) 100%);
   border-radius: var(--radius-xl);
@@ -826,9 +808,6 @@
   color: #B45309;
 }
 
-/* ==========================================================================
-   PAGE: EMERGENCY CONTACTS DIRECTORY
-   ========================================================================== */
 .tabs-nav {
   display: flex;
   align-items: center;
@@ -976,9 +955,6 @@
   min-height: 42px;
 }
 
-/* ==========================================================================
-   PAGE: SAFE ZONES DIRECTORY
-   ========================================================================== */
 .safezones-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -1061,9 +1037,6 @@
   background-color: var(--blue-accent);
 }
 
-/* ==========================================================================
-   PAGE: PREPAREDNESS CHECKLIST & GUIDES
-   ========================================================================== */
 .prep-guide-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1093,9 +1066,6 @@
   color: var(--text-secondary);
 }
 
-/* ==========================================================================
-   FORMS & INPUTS
-   ========================================================================== */
 .form-group {
   display: flex;
   flex-direction: column;
@@ -1177,9 +1147,6 @@ textarea.form-control {
   background-color: var(--red-hover);
 }
 
-/* ==========================================================================
-   MODAL DIALOGS (Responsive Bottom Sheet on Mobile)
-   ========================================================================== */
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -1283,9 +1250,6 @@ textarea.form-control {
   box-sizing: border-box;
 }
 
-/* ==========================================================================
-   MOBILE "MORE" MENU SHEET
-   ========================================================================== */
 .mobile-more-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1331,9 +1295,6 @@ textarea.form-control {
   color: var(--navy-primary);
 }
 
-/* ==========================================================================
-   TOAST NOTIFICATIONS
-   ========================================================================== */
 #toastContainer {
   position: fixed;
   bottom: 24px;
@@ -1370,16 +1331,12 @@ textarea.form-control {
   to { transform: translateX(0); opacity: 1; }
 }
 
-/* Badge Utilities */
 .badge-danger { background-color: var(--red-subtle); color: var(--red-alert); }
 .badge-safe { background-color: var(--green-subtle); color: var(--green-safe); }
 .badge-water { background-color: var(--water-subtle); color: var(--water-blue); }
 .badge-purple { background-color: var(--purple-subtle); color: var(--purple-help); }
 .badge-orange { background-color: var(--orange-subtle); color: var(--orange-supply); }
 
-/* ==========================================================================
-   MOBILE RESPONSIVE BREAKPOINT RULES (Strict Max-Width 768px)
-   ========================================================================== */
 @media (max-width: 992px) {
   .dashboard-grid {
     grid-template-columns: 1fr;
@@ -1396,7 +1353,7 @@ textarea.form-control {
 }
 
 @media (max-width: 768px) {
-  /* Dashboard Single Column Layout */
+  
   .dashboard-grid {
     display: flex;
     flex-direction: column;
@@ -1413,7 +1370,6 @@ textarea.form-control {
     min-width: 0;
   }
 
-  /* 2x2 Quick Action Cards */
   .quick-actions-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
@@ -1442,7 +1398,6 @@ textarea.form-control {
     line-height: 1.25;
   }
 
-  /* Horizontal Swipeable Live Counters */
   .metrics-row {
     display: flex;
     overflow-x: auto;
@@ -1475,7 +1430,6 @@ textarea.form-control {
     font-size: 0.68rem;
   }
 
-  /* Status Banner Mobile Stacking */
   .status-banner {
     flex-direction: column;
     align-items: flex-start;
@@ -1513,7 +1467,6 @@ textarea.form-control {
     font-size: 0.72rem;
   }
 
-  /* Dashboard Risk Map on Mobile */
   .dashboard-map-wrapper {
     height: 270px;
     border-radius: 0 0 var(--radius-md) var(--radius-md);
@@ -1529,7 +1482,6 @@ textarea.form-control {
     font-size: 0.72rem;
   }
 
-  /* Our Home Hero Block on Mobile */
   .hero-community-card {
     min-height: 210px;
     padding: 18px 14px;
@@ -1554,7 +1506,6 @@ textarea.form-control {
     font-size: 0.78rem;
   }
 
-  /* Preparedness Block on Mobile */
   .prep-progress-header {
     margin-bottom: 6px;
   }
@@ -1582,7 +1533,6 @@ textarea.form-control {
     padding: 14px;
   }
 
-  /* Safe Check-In Mobile CTA */
   .checkin-hero-box {
     padding: 22px 14px;
     border-radius: var(--radius-lg);
@@ -1595,7 +1545,6 @@ textarea.form-control {
     margin: 12px 0;
   }
 
-  /* Bottom-sheet pattern for modals on mobile */
   .modal-backdrop {
     align-items: flex-end;
     padding: 0;

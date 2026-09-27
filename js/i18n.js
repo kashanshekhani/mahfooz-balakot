@@ -1,6 +1,3 @@
-// Multilingual localization for Mahfooz Balakot (English, Urdu, Pashto)
-// Strict rule: No long em dashes anywhere
-
 export const TRANSLATIONS = {
   en: {
     appName: "Mahfooz Balakot",
@@ -14,7 +11,6 @@ export const TRANSLATIONS = {
     lastUpdated: "Updated",
     refreshStatus: "Refresh Status",
     
-    // Nav items
     navDashboard: "Dashboard",
     navRiskMap: "Risk Map",
     navSafeCheckin: "Safe Check-In",
@@ -25,20 +21,17 @@ export const TRANSLATIONS = {
     navReports: "Reports & Updates",
     navLanguage: "Language",
     
-    // Quick Actions
     actionReportHazard: "Report Hazard",
     actionImSafe: "I am Safe",
     actionFindSafeZone: "Find Safe Zone",
     actionEmergencyHelp: "Emergency Help",
     
-    // Counters
     counterUnsafe: "Unsafe Buildings",
     counterBlocked: "Blocked Roads",
     counterSafeZones: "Safe Zones",
     counterWater: "Water Sources",
     counterVolunteers: "Active Volunteers",
     
-    // Activity & Reports
     recentActivity: "Recent Community Activity",
     viewAllActivity: "View All Reports",
     filterAll: "All",
@@ -50,7 +43,6 @@ export const TRANSLATIONS = {
     filterFood: "Food & Supplies",
     filterVolunteers: "Volunteers & Drivers",
     
-    // Check In Screen
     checkinTitle: "Family & Community Safety Check-In",
     checkinSubtitle: "Let your loved ones and community know you are safe with one single tap.",
     btnMarkSafe: "I Am Safe & Well",
@@ -64,7 +56,6 @@ export const TRANSLATIONS = {
     shareStatusWhatsApp: "Share Status on WhatsApp",
     checkinStatsText: "Households have marked themselves safe today in Balakot.",
     
-    // Report Hazard
     reportTitle: "Report a Hazard in Balakot",
     reportSubtitle: "Help neighbors stay safe by reporting damaged structures, blocked roads, or leaks.",
     hazardCategory: "Hazard Category",
@@ -85,7 +76,6 @@ export const TRANSLATIONS = {
     hazardPhoto: "Attach Photo (Optional)",
     btnSubmitReport: "Submit Community Hazard Report",
     
-    // Emergency Contacts
     contactsTitle: "Emergency Contacts & Responders",
     contactsSubtitle: "Direct telephone numbers of registered doctors, 4x4 mountain drivers, and 1122 units in Balakot.",
     tabAllContacts: "All Responders",
@@ -97,7 +87,6 @@ export const TRANSLATIONS = {
     btnWhatsApp: "WhatsApp",
     callSOS: "Quick SOS Dispatch",
     
-    // Safe Zones
     safeZoneTitle: "Verified Safe Assembly Zones",
     safeZoneSubtitle: "Open grounds and public areas verified for zero building collapse and river flood hazards.",
     btnGetDirections: "View Walking Route",
@@ -105,7 +94,6 @@ export const TRANSLATIONS = {
     capacityFree: "Free Capacity",
     facilitiesLabel: "Available Facilities",
     
-    // Volunteers
     volunteersTitle: "Community Responder Roster",
     volunteersSubtitle: "Join our self-organizing Balakot network. No government budget needed, just local neighbors helping neighbors.",
     btnJoinVolunteers: "Register as Volunteer",
@@ -116,7 +104,6 @@ export const TRANSLATIONS = {
     formVolVehicle: "Vehicle / Equipment (Optional)",
     btnSubmitVolunteer: "Join Responder Network",
     
-    // Preparedness
     prepTitle: "Household Earthquake Preparedness",
     prepSubtitle: "Actionable checklist and high-altitude mountain survival guides designed for Balakot families.",
     checklistProgress: "Readiness Level",
@@ -126,12 +113,10 @@ export const TRANSLATIONS = {
     guideTabAfter: "3. After (Evacuate)",
     btnPrintCard: "Pocket Emergency Card",
     
-    // Community Hero Panel
     heroTitle: "Our Home, Our Responsibility",
     heroDesc: "Balakot rebuilt with community courage. Mahfooz Balakot empowers every resident with real-time safety, without waiting for bureaucracy.",
     learnMore: "Read Community Safety Guide",
     
-    // Common
     verified: "Community Verified",
     unverified: "Pending Verification",
     resolved: "Resolved",
@@ -155,7 +140,6 @@ export const TRANSLATIONS = {
     lastUpdated: "آخری اپ ڈیٹ",
     refreshStatus: "تازہ کریں",
     
-    // Nav items
     navDashboard: "ڈیش بورڈ",
     navRiskMap: "خطرات کا نقشہ",
     navSafeCheckin: "میں محفوظ ہوں",
@@ -166,20 +150,17 @@ export const TRANSLATIONS = {
     navReports: "رپورٹس اور اپ ڈیٹس",
     navLanguage: "زبان کا انتخاب",
     
-    // Quick Actions
     actionReportHazard: "خطرے کی اطلاع دیں",
     actionImSafe: "میں محفوظ ہوں",
     actionFindSafeZone: "محفوظ جگہ تلاش کریں",
     actionEmergencyHelp: "ہنگامی مدد",
     
-    // Counters
     counterUnsafe: "غیر محفوظ عمارات",
     counterBlocked: "بند سڑکیں",
     counterSafeZones: "محفوظ مقامات",
     counterWater: "پانی کے ذرائع",
     counterVolunteers: "فعال رضاکار",
     
-    // Activity & Reports
     recentActivity: "کمیونٹی کی تازہ سرگرمیاں",
     viewAllActivity: "تمام رپورٹس دیکھیں",
     filterAll: "تمام",
@@ -191,7 +172,6 @@ export const TRANSLATIONS = {
     filterFood: "خوراک و راشن",
     filterVolunteers: "رضاکار و ڈرائیورز",
     
-    // Check In Screen
     checkinTitle: "خاندان اور برادری کی حفاظت کا چیک اِن",
     checkinSubtitle: "صرف ایک کلک کے ساتھ اپنے پیاروں اور بستی والوں کو آگاہ کریں کہ آپ بخیریت ہیں۔",
     btnMarkSafe: "الحمدللہ میں محفوظ ہوں",
@@ -205,7 +185,6 @@ export const TRANSLATIONS = {
     shareStatusWhatsApp: "واٹس ایپ پر اطلاع بھیجیں",
     checkinStatsText: "گھرانوں نے آج بالاکوٹ میں اپنی خیریت کی تصدیق کی ہے۔",
     
-    // Report Hazard
     reportTitle: "بالاکوٹ میں خطرے یا نقصان کی اطلاع دیں",
     reportSubtitle: "مخدوش عمارتوں، بند راستوں اور گیس لیکیج کی اطلاع دے کر ہم وطنوں کو محفوظ رکھیں۔",
     hazardCategory: "خطرے کی نوعیت",
@@ -226,7 +205,6 @@ export const TRANSLATIONS = {
     hazardPhoto: "تصویر منسلک کریں (اختیاری)",
     btnSubmitReport: "خطرے کی رپورٹ درج کریں",
     
-    // Emergency Contacts
     contactsTitle: "ہنگامی رابطے اور ریسپونڈرز",
     contactsSubtitle: "بالاکوٹ کے مقامی ڈاکٹروں، 4x4 ڈرائیورز اور 1122 ریسکیو کے براہ راست نمبرز۔",
     tabAllContacts: "تمام رابطے",
@@ -238,7 +216,6 @@ export const TRANSLATIONS = {
     btnWhatsApp: "واٹس ایپ",
     callSOS: "فوری ایمرجنسی کال",
     
-    // Safe Zones
     safeZoneTitle: "مصدقہ محفوظ کھلے مقامات",
     safeZoneSubtitle: "وہ میدان اور محفوظ احاطے جو عمارتوں کے ملبے اور دریا کے کٹاؤ سے محفوظ ہیں۔",
     btnGetDirections: "پیدل راستہ دیکھیں",
@@ -246,7 +223,6 @@ export const TRANSLATIONS = {
     capacityFree: "خالی گنجائش",
     facilitiesLabel: "دستیاب سہولیات",
     
-    // Volunteers
     volunteersTitle: "مقامی رضاکار فورس",
     volunteersSubtitle: "ہمارے خود مختار بالاکوٹ نیٹ ورک کا حصہ بنیں۔ حکومت پر انحصار کے بغیر ایک دوسرے کا سہارا بنیں۔",
     btnJoinVolunteers: "بطور رضاکار شامل ہوں",
@@ -257,7 +233,6 @@ export const TRANSLATIONS = {
     formVolVehicle: "گاڑی / سامان (اگر دستیاب ہو)",
     btnSubmitVolunteer: "رضاکار نیٹ ورک میں شامل ہوں",
     
-    // Preparedness
     prepTitle: "گھرانوں کے لیے زلزلے کی تیاری",
     prepSubtitle: "بالاکوٹ کے پہاڑی خطے کے لیے خصوصی طور پر تیار کردہ حفاظتی رہنما اصول اور چیک لسٹ۔",
     checklistProgress: "تیاری کا تناسب",
@@ -267,12 +242,10 @@ export const TRANSLATIONS = {
     guideTabAfter: "3. زلزلے کے بعد (انخلاء)",
     btnPrintCard: "پاکٹ ایمرجنسی کارڈ",
     
-    // Community Hero Panel
     heroTitle: "ہمارا وطن، ہماری ذمہ داری",
     heroDesc: "بالاکوٹ نے اپنے بل بوتے پر زندگی دوبارہ شروع کی۔ محفوظ بالاکوٹ ہر شہری کو بروقت معلومات اور تحفظ فراہم کرتا ہے۔",
     learnMore: "حفاظتی گائیڈ کا مطالعہ کریں",
     
-    // Common
     verified: "کمیونٹی مصدقہ",
     unverified: "تصدیق باقی ہے",
     resolved: "مسئلہ حل ہو گیا",
@@ -296,7 +269,6 @@ export const TRANSLATIONS = {
     lastUpdated: "تازه معلومات",
     refreshStatus: "تازه کړئ",
     
-    // Nav items
     navDashboard: "ډشبورډ",
     navRiskMap: "د خطرونو نقشه",
     navSafeCheckin: "زه خوندي یم",
@@ -307,20 +279,17 @@ export const TRANSLATIONS = {
     navReports: "راپورونه او بدلونونه",
     navLanguage: "ژبه غوره کړئ",
     
-    // Quick Actions
     actionReportHazard: "خطر راپور کړئ",
     actionImSafe: "زه روغ یم",
     actionFindSafeZone: "خوندي ځای ومومئ",
     actionEmergencyHelp: "بیړنۍ مرسته",
     
-    // Counters
     counterUnsafe: "ماتې ودانۍ",
     counterBlocked: "بندې لارې",
     counterSafeZones: "خوندي ځایونه",
     counterWater: "د اوبو سرچینې",
     counterVolunteers: "فعال رضاکاران",
     
-    // Activity & Reports
     recentActivity: "د کلي تازه فعالیتونه",
     viewAllActivity: "ټول راپورونه وګورئ",
     filterAll: "ټول",
@@ -332,7 +301,6 @@ export const TRANSLATIONS = {
     filterFood: "خواړه او راشن",
     filterVolunteers: "رضاکاران او ډریوران",
     
-    // Check In Screen
     checkinTitle: "د کورنۍ او خپلوالو د روغتیا تصدیق",
     checkinSubtitle: "په یوه کلیک سره خپلوان خبر کړئ چې تاسو روغ او په امن کې یاست.",
     btnMarkSafe: "زه روغ او خوندي یم",
@@ -346,7 +314,6 @@ export const TRANSLATIONS = {
     shareStatusWhatsApp: "په واټس اپ خبر کړئ",
     checkinStatsText: "کورنیو نن په بالاکوټ کې خپله روغتیا تایید کړه.",
     
-    // Report Hazard
     reportTitle: "د بالاکوټ د خطرونو راپور ورکړئ",
     reportSubtitle: "د ماتو کورونو، بندو لارو او ګازو د خپریدو خبر ورکړئ چې نور ترې خبر شي.",
     hazardCategory: "د خطر ډول",
@@ -367,7 +334,6 @@ export const TRANSLATIONS = {
     hazardPhoto: "عکس ورزیات کړئ (اختیاري)",
     btnSubmitReport: "راپور ولیږئ",
     
-    // Emergency Contacts
     contactsTitle: "بیړنۍ اړیکې او مرستندویان",
     contactsSubtitle: "د بالاکوټ د ډاکټرانو، څلور ټکره موټرو او ۱۱۲۲ مستقیمې شمیرې.",
     tabAllContacts: "ټولې اړیکې",
@@ -379,7 +345,6 @@ export const TRANSLATIONS = {
     btnWhatsApp: "واټس اپ",
     callSOS: "بیړنی زنګ",
     
-    // Safe Zones
     safeZoneTitle: "باوري او خوندي خلاص ځایونه",
     safeZoneSubtitle: "هغه میدانونه او شنې سیمې چې د ودانیو له نړیدو او سیند له سېلابه په امن کې دي.",
     btnGetDirections: "پلي لار وګورئ",
@@ -387,7 +352,6 @@ export const TRANSLATIONS = {
     capacityFree: "خالي ځای",
     facilitiesLabel: "شته اسانتیاوې",
     
-    // Volunteers
     volunteersTitle: "د رضاکارانو غونډ",
     volunteersSubtitle: "د بالاکوټ په خپلواکه ژغورونکې ډله کې برخه واخلئ.",
     btnJoinVolunteers: "د رضاکار په توګه نوم ولیکئ",
@@ -398,7 +362,6 @@ export const TRANSLATIONS = {
     formVolVehicle: "ګاډی / سامان (که وي)",
     btnSubmitVolunteer: "په ډله کې شامل شئ",
     
-    // Preparedness
     prepTitle: "د زلزلې لپاره د کورنۍ چمتووالی",
     prepSubtitle: "د غره ییزو سیمو لپاره ځانګړي لارښودونه او د ژغورنې ګامونه.",
     checklistProgress: "د چمتووالي کچه",
@@ -408,12 +371,10 @@ export const TRANSLATIONS = {
     guideTabAfter: "۳. وروسته (وتل)",
     btnPrintCard: "د بیړني وخت کارډ",
     
-    // Community Hero Panel
     heroTitle: "زموږ کور، زموږ مسؤلیت",
     heroDesc: "بالاکوټ په خپل همت بیرته ودانیږي. محفوظ بالاکوټ هر وګړي ته په خپل وخت مرسته رسوي.",
     learnMore: "د ژغورنې لارښود ولولئ",
     
-    // Common
     verified: "د کلي تایید شوی",
     unverified: "نا تایید شوی",
     resolved: "حل شو",

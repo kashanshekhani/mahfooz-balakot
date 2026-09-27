@@ -6,7 +6,6 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Helper to parse .env file
 function loadEnv() {
   const env = {};
   try {
@@ -50,7 +49,6 @@ function createServer(port) {
   const server = http.createServer((req, res) => {
     let reqUrl = req.url.split('?')[0];
 
-    // Safe API endpoint to expose only configured public variables
     if (reqUrl === '/api/config') {
       const currentEnv = loadEnv();
       const publicConfig = {

@@ -1,6 +1,3 @@
-// Initial seed dataset for Mahfooz Balakot - Community Earthquake Network
-// All coordinates are accurate to Balakot, Khyber Pakhtunkhwa (Valley Center: 34.5484, 73.3533)
-
 export const INITIAL_DATA = {
   hazardReports: [
     {

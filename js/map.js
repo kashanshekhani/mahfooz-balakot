@@ -1,7 +1,3 @@
-// Leaflet Map Controller for Mahfooz Balakot
-// Coordinates centered on Balakot, KP (34.5484, 73.3533)
-// No long em dashes used.
-
 import { CONFIG } from './config.js';
 
 export class BalakotMap {
@@ -23,14 +19,12 @@ export class BalakotMap {
     const container = document.getElementById(this.containerId);
     if (!container) return;
 
-    // Destroy existing instance if any
     if (this.map) {
       this.map.remove();
     }
 
     const isMobile = window.innerWidth <= 768;
 
-    // Initialize Leaflet Map
     this.map = L.map(this.containerId, {
       center: this.currentCenter,
       zoom: isMobile ? 13.5 : this.defaultZoom,
@@ -39,7 +33,6 @@ export class BalakotMap {
       attributionControl: true
     });
 
-    // Add CARTO Basemaps raster tiles if configured, otherwise use OpenStreetMap
     const tileUrl = CONFIG.CARTO_TILE_URL || CONFIG.OSM_TILE_URL || 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     const attribution = CONFIG.CARTO_TILE_URL
       ? '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions" target="_blank">CARTO</a>'
@@ -51,7 +44,6 @@ export class BalakotMap {
       maxZoom: 19
     }).addTo(this.map);
 
-    // Zoom control in custom clean position if enabled
     if (!isMobile || !this.isDashboard) {
       L.control.zoom({ position: 'topright' }).addTo(this.map);
     }
@@ -59,7 +51,6 @@ export class BalakotMap {
     this.markersLayer = L.layerGroup().addTo(this.map);
     this.routeLayer = L.layerGroup().addTo(this.map);
 
-    // Map click handler to trigger "Report Hazard Here"
     this.map.on('click', (e) => {
       const { lat, lng } = e.latlng;
       if (this.options.onMapClick) {
@@ -67,12 +58,10 @@ export class BalakotMap {
       }
     });
 
-    // Invalidate size on load to avoid grey tile glitches
     setTimeout(() => {
       if (this.map) this.map.invalidateSize();
     }, 250);
 
-    // Handle window resize / orientation change
     window.addEventListener('resize', () => {
       if (this.map) this.map.invalidateSize();
     });
@@ -144,7 +133,6 @@ export class BalakotMap {
     const isMobile = window.innerWidth <= 768;
     const popupWidth = isMobile ? 260 : 300;
 
-    // 1. Hazard Reports
     state.hazardReports.forEach((report) => {
       if (report.status === 'resolved') return;
       
@@ -194,7 +182,6 @@ export class BalakotMap {
       this.markersLayer.addLayer(marker);
     });
 
-    // 2. Safe Zones
     if (filter === 'all' || filter === 'safezones') {
       state.safeZones.forEach((sz) => {
         const icon = this.createCustomIcon('safezone', 'safezone');
@@ -228,7 +215,6 @@ export class BalakotMap {
       });
     }
 
-    // 3. Resources (Water, Food, Medical)
     state.resources.forEach((res) => {
       if (filter !== 'all') {
         if (filter === 'water' && res.type !== 'water') return;
@@ -266,7 +252,6 @@ export class BalakotMap {
       this.markersLayer.addLayer(marker);
     });
 
-    // Attach click events inside popups via document delegation
     this.attachPopupListeners();
   }
 
@@ -295,11 +280,9 @@ export class BalakotMap {
 
     this.routeLayer.clearLayers();
 
-    // User simulated start point (Balakot center)
     const userLat = 34.5478;
     const userLng = 73.3518;
 
-    // Create path with intermediate walking waypoints
     const midLat = (userLat + targetLat) / 2 + 0.0008;
     const midLng = (userLng + targetLng) / 2;
 
@@ -309,7 +292,6 @@ export class BalakotMap {
       [targetLat, targetLng]
     ];
 
-    // User position marker
     const userMarker = L.marker([userLat, userLng], {
       icon: L.divIcon({
         html: `<div class="user-position-marker"><div class="user-pulse"></div></div>`,
