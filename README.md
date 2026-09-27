@@ -3,8 +3,9 @@
 ### Community Earthquake Preparedness & Real-Time Emergency Response Network
 **Tagline:** *Together We Are Mahfooz* | *Safer Community, Stronger Tomorrow*
 
+[![GitHub Repository](https://img.shields.io/badge/GitHub-kashanshekhani%2Fmahfooz--balakot-181717?logo=github)](https://github.com/kashanshekhani/mahfooz-balakot)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Status: Production Ready](https://img.shields.io/badge/Status-Production%20Ready-success.svg)](http://localhost:5173)
+[![Status: Production Ready](https://img.shields.io/badge/Status-Production%20Ready-success.svg)](#getting-started)
 [![Region: Balakot, KPK](https://img.shields.io/badge/Region-Balakot%2C%20KPK%20Pakistan-orange.svg)](#)
 [![RTL Support](https://img.shields.io/badge/RTL-Urdu%20%7C%20Pashto-brightgreen.svg)](#)
 [![Zero Budget](https://img.shields.io/badge/Architecture-Zero%20Budget%20%2F%20Serverless-purple.svg)](#)
@@ -13,15 +14,15 @@
 
 ## 1. Overview
 
-Balakot, located in the Mansehra District of Khyber Pakhtunkhwa, sits directly on active Himalayan seismic fault lines and was the epicenter of the devastating 7.6 magnitude earthquake in October 2005. Two decades later, the valley remains situated in a high-seismic-risk red zone with rugged topography, landslide-prone transit corridors, and limited municipal resources.
+Balakot, situated in the Mansehra District of Khyber Pakhtunkhwa, rests directly along active Himalayan seismic fault lines and was the epicenter of the devastating 7.6 magnitude earthquake in October 2005. Two decades later, the valley remains situated in a high-seismic-risk red zone with steep mountain topography, landslide-prone transit corridors, and constrained municipal infrastructure.
 
-**Mahfooz Balakot** is a lightweight, community-owned web platform engineered to transform the residents of Balakot into a self-organizing safety and mutual-aid network. It delivers real-time hazard mapping, one-tap family check-ins, verified safe assembly zones, emergency responder directories, and household preparedness checklists: all operating with zero reliance on government infrastructure or municipal budgets.
+**Mahfooz Balakot** is a lightweight, community-owned web platform engineered to empower the residents of Balakot as a self-organizing safety, risk-awareness, and mutual-aid network. It delivers real-time hazard mapping, one-tap family check-ins, verified safe assembly zones, emergency responder directories, and household preparedness checklists: all operating with zero reliance on costly proprietary services or external server infrastructure.
 
 ---
 
 ## 2. Core Capabilities & Modules
 
-### Real-Time Community Dashboard
+### 1. Real-Time Community Dashboard
 - **Color-Coded Status Banner:** Dynamic community advisory banner (Normal: Green / Alert: Red) with live simulation toggles and manual refresh.
 - **Quick Action Grid:** High-contrast, touch-optimized action cards:
   - **Report Hazard** (Alert Red)
@@ -33,7 +34,7 @@ Balakot, located in the Mansehra District of Khyber Pakhtunkhwa, sits directly o
 - **Resilience Panel:** "Our Home, Our Responsibility" card anchoring the platform emotionally with authentic imagery and civic pride.
 - **Recent Activity Feed:** Reverse-chronological timeline logging verified safe check-ins, road clearances, and hazard notices.
 
-### Interactive Risk & Resource Map (Leaflet.js + CARTO Basemaps)
+### 2. Interactive Risk & Resource Map (Leaflet.js + CARTO Basemaps)
 - **High-Accuracy Geospatial Center:** Centered on Balakot, KP (`34.5484° N, 73.3533° E`).
 - **CARTO Voyager Basemaps:** Vector-styled raster tiles powered by CARTO Basemaps API key with seamless fallback to OpenStreetMap.
 - **Custom Visual Markers:**
@@ -46,37 +47,37 @@ Balakot, located in the Mansehra District of Khyber Pakhtunkhwa, sits directly o
 - **Interactive Popup Cards:** Complete details including damage photos, calculated distance, walking route polylines, and community verification upvotes (`+1`).
 - **Neighborhood Search & Recenter:** Rapid search across Balakot localities (Garlat, Main Bazaar, Sangar, Hasamabad, Kaghan Road).
 
-### Safe Check-In ("I am Safe")
-- **One-Tap Status Confirmation:** Large circular CTA with instant timestamping and geographic coordinates recording.
+### 3. Safe Check-In ("I am Safe")
+- **One-Tap Status Confirmation:** Large circular CTA with instant timestamping and geographic coordinate recording.
 - **Family & Household Circle:** Real-time monitoring of family members, recording battery levels, last-seen locations, and timestamped statuses.
 - **WhatsApp Shareable Broadcast:** Single-tap generation of pre-formatted WhatsApp status messages for family groups and diaspora relatives.
 
-### Crowdsourced Hazard Reporting
+### 4. Crowdsourced Hazard Reporting
 - **Multi-Category Damage Reporting:** Damaged Building, Blocked Road, Landslide, Unsafe Bridge, Gas/Electrical Hazard, or Other.
 - **Urgency Classification:** High, Medium, and Low priority triage.
 - **Photo Evidence Simulation:** Visual hazard preview and landmark description inputs.
 - **Instant Propagation:** Submissions update local state, map markers, and community feeds immediately.
 
-### Emergency Contacts & Responders Directory
+### 5. Emergency Contacts & Responders Directory
 - **Direct Local Directory:** Categorized tabs for Local Doctors, 4x4 Mountain Drivers, First Aid Responders, and Rescue Personnel.
 - **One-Touch Communication:** Direct click-to-call (`tel:`) and direct WhatsApp messaging (`wa.me`).
 - **Emergency Hotline Modal:** Instant access to Rescue 1122, Edhi Emergency 115, Balakot Police Station, and DHQ Trauma Desk.
 
-### Verified Safe Assembly Zones
+### 6. Verified Safe Assembly Zones
 - **Geographic Safety Verification:** Directory of open grounds verified safe from building collapses and Kunhar River flash surges (Govt High School Ground, Sangar Hill Ridge, Balakot Sports Ground, Hasamabad Meadow).
 - **Capacity & Facility Indicators:** Elevation data, tent capacity, clean water availability, and solar backup lighting.
 - **Walking Path Simulation:** Visual navigation polylines guiding users to the nearest assembly zone.
 
-### Volunteer & Responder Network
+### 7. Volunteer & Responder Network
 - **Community Registration:** Simple onboarding form for local residents to register specialized skills (First Aid, 4x4 Off-Road Transport, Search & Rescue, Heavy Equipment, Medical).
 - **Live Responder Roster:** Searchable and filterable directory of active community volunteers ready to deploy.
 
-### Household Preparedness & Survival Guides
+### 8. Household Preparedness & Survival Guides
 - **10-Point Readiness Checklist:** Interactive checklist with progress percentage bar, completed item counters, and achievement badges.
 - **3-Stage Himalayan Earthquake Guide:** Clear protocols for Before (Securing homes), During (Drop, Cover, Hold On), and After (Evacuation & Gas checks).
 - **Printable Pocket Emergency Card:** Single-sheet offline guide formatted for grab bags and physical wallets.
 
-### Multilingual & True RTL Support
+### 9. Multilingual & True RTL Support
 - **Tri-Lingual Engine:** Native support for **English**, **Urdu (اردو)**, and **Pashto (پښتو)**.
 - **Authentic Typography:** Web-font integration for Nastaliq script (`Noto Nastaliq Urdu`) and Pashto typography (`Baloo Bhaijaan 2`).
 - **Bi-Directional Layout Mirroring:** Complete CSS RTL transformations for sidebar, navigation, cards, forms, and icons.
@@ -85,7 +86,7 @@ Balakot, located in the Mansehra District of Khyber Pakhtunkhwa, sits directly o
 
 ## 3. Design System & Color Tokens
 
-The visual language follows a calm, authoritative, and humanist aesthetic designed to reduce panic during emergencies while remaining functional in bright daylight and low-connectivity environments.
+The visual language follows a calm, authoritative, and humanist aesthetic designed to reduce panic during emergencies while remaining legible in high-glare mountain environments and low-connectivity conditions.
 
 | CSS Variable | Hex Code | Purpose & Semantic Usage |
 |---|---|---|
@@ -123,11 +124,11 @@ The visual language follows a calm, authoritative, and humanist aesthetic design
                      +-----------------+
 ```
 
-- **Frontend Core:** Pure HTML5, Vanilla CSS3 (Custom Properties), and Modular ES6 JavaScript. Zero heavy framework lock-in.
-- **Mapping Engine:** Leaflet.js v1.9.4 integrated with CARTO Voyager Raster Tiles and OpenStreetMap fallback.
-- **Reactive State Management:** Observer-based state store with instant `localStorage` persistence, enabling complete offline continuity across browser refreshes.
+- **Frontend Core:** Pure HTML5, Vanilla CSS3 (CSS Custom Properties), and Modular ES6 JavaScript. Zero build-step dependencies required for runtime.
+- **Mapping Engine:** Leaflet.js v1.9.4 integrated with CARTO Voyager Raster Tiles and automatic OpenStreetMap fallback.
+- **Reactive State Management:** Observer-based state store with instant `localStorage` persistence, enabling complete offline continuity across page reloads.
 - **Typography:** Google Fonts (`Plus Jakarta Sans`, `Outfit`, `Noto Nastaliq Urdu`, `Baloo Bhaijaan 2`).
-- **Icons & Graphics:** Clean SVG vectors and high-definition local imagery.
+- **Icons & Visual Media:** Clean SVG vectors and high-definition local imagery.
 - **Local Server:** Zero-dependency Node.js ESM server with automatic port-conflict resolution (`port + 1`).
 
 ---
@@ -136,15 +137,16 @@ The visual language follows a calm, authoritative, and humanist aesthetic design
 
 ```
 mahfooz-balakot/
-├── .env                      # Environment variables & CARTO API keys
-├── .env.example              # Template environment file
+├── .env                      # Local environment variables & API keys (Git-ignored)
+├── .env.example              # Template environment configuration
+├── .gitignore                # Excludes secrets (.env), dependencies, and system caches
 ├── index.html                # Main semantic application markup (all 8 views & modals)
-├── package.json              # Project scripts and package configuration
+├── package.json              # Project scripts and metadata
 ├── server.js                 # Zero-dependency Node.js static ESM server
 ├── README.md                 # Complete system documentation
 ├── PRD.md                    # Product Requirements Document
-├── ARCHITECTURE.md           # Architecture and technical specification
-├── DESIGN.md                 # Design guidelines and token specifications
+├── ARCHITECTURE.md           # Architecture and technical specifications
+├── DESIGN.md                 # Design system guidelines and token specifications
 ├── assets/                   # Vector icons & visual media
 │   ├── balakot_landscape.jpg # Panoramic photograph of Balakot valley
 │   ├── hazard_crack.jpg      # Structural damage reference photograph
@@ -173,22 +175,35 @@ mahfooz-balakot/
 
 ### Quick Start & Local Execution
 
-1. **Open your terminal and navigate to the project folder:**
-   ```powershell
-   cd "c:\Users\kashan\OneDrive - Habib University\Projects\mahfooz-balakot"
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/kashanshekhani/mahfooz-balakot.git
+   cd mahfooz-balakot
    ```
 
-2. **Verify Environment Setup:**
-   A configured `.env` file is included with active CARTO Basemap credentials:
+2. **Configure Environment Variables:**
+   Copy `.env.example` to create your local `.env` file:
+   
+   *On Windows PowerShell:*
+   ```powershell
+   Copy-Item .env.example .env
+   ```
+
+   *On Linux / macOS:*
+   ```bash
+   cp .env.example .env
+   ```
+
+   Add your CARTO API key if you have one (the application automatically falls back to OpenStreetMap if no key is provided):
    ```env
-   CARTO_API_KEY=cb1_406e_1_357cb530ade75c46104dfb50
+   CARTO_API_KEY=your_carto_api_key_here
    PORT=5173
    ```
 
 3. **Start the Web Server:**
-   You can launch the server using any of the following standard commands:
+   Launch the development server using any of the following options:
 
-   *Using standard npm script:*
+   *Using npm:*
    ```powershell
    npm run dev
    ```
@@ -198,7 +213,7 @@ mahfooz-balakot/
    npm.cmd run dev
    ```
 
-   *Or run directly via Node.js:*
+   *Or run directly via Node.js (Zero-dependency):*
    ```powershell
    node server.js
    ```
@@ -229,8 +244,9 @@ Mahfooz Balakot is designed from the ground up with contextual responsive ergono
 
 ---
 
-## 8. Data Persistence & Privacy
+## 8. Data Persistence, Security & Privacy
 
+- **Protected Secrets:** Sensitive keys and local `.env` files are excluded from git tracking via `.gitignore`.
 - **Local-First Architecture:** All user check-ins, hazard reports, volunteer registrations, and checklist progress are stored locally on the device via `localStorage`.
 - **Zero Account Wall:** No mandatory logins, passwords, or personal identity verifications required to access emergency help, view hazard maps, or confirm safety.
 - **Privacy by Default:** Contact numbers and family circle entries remain in the user's local browser storage unless explicitly shared via direct WhatsApp broadcast links.
