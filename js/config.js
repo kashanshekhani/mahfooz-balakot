@@ -1,11 +1,26 @@
 // Application Configuration
-// Values loaded with CARTO Basemaps API key
-// No long em dashes used
+// Secrets and keys are strictly loaded from .env via the local server (/api/config)
+// If running without a server, fallback to OpenStreetMap
 
 export const CONFIG = {
-  CARTO_API_KEY: 'cb1_406e_1_357cb530ade75c46104dfb50',
-  CARTO_TILE_URL: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?key=cb1_406e_1_357cb530ade75c46104dfb50',
+  CARTO_API_KEY: '',
+  CARTO_TILE_URL: '',
+  OSM_TILE_URL: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
   MAP_CENTER: [34.5484, 73.3533],
   MAP_DEFAULT_ZOOM: 14,
   APP_NAME: 'Mahfooz Balakot'
 };
+
+// Dynamically load runtime configuration from .env via backend API
+export async function loadRuntimeConfig() {
+  try {
+    const response = await fetch('/api/config');
+    if (response.ok) {
+      const serverConfig = await response.json();
+      Object.assign(CONFIG, serverConfig);
+    }
+  } catch (err) {
+    // Running in static environment or offline; defaults will be used
+  }
+  return CONFIG;
+}

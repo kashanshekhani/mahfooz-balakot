@@ -39,11 +39,14 @@ export class BalakotMap {
       attributionControl: true
     });
 
-    // Add CARTO Basemaps raster tiles with user's CARTO API key from CONFIG
-    const tileUrl = CONFIG.CARTO_TILE_URL || 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?key=cb1_406e_1_357cb530ade75c46104dfb50';
+    // Add CARTO Basemaps raster tiles if configured, otherwise use OpenStreetMap
+    const tileUrl = CONFIG.CARTO_TILE_URL || CONFIG.OSM_TILE_URL || 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+    const attribution = CONFIG.CARTO_TILE_URL
+      ? '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions" target="_blank">CARTO</a>'
+      : '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors';
 
     L.tileLayer(tileUrl, {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions" target="_blank">CARTO</a>',
+      attribution: attribution,
       subdomains: 'abcd',
       maxZoom: 19
     }).addTo(this.map);

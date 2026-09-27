@@ -1,6 +1,7 @@
 import { appState } from './state.js';
 import { TRANSLATIONS } from './i18n.js';
 import { BalakotMap } from './map.js';
+import { loadRuntimeConfig } from './config.js';
 
 class MahfoozApp {
   constructor() {
@@ -12,7 +13,10 @@ class MahfoozApp {
     this.activeMapFilter = 'all';
   }
 
-  init() {
+  async init() {
+    // Load runtime configuration from backend / .env if available
+    await loadRuntimeConfig();
+
     this.setupNavigation();
     this.setupLanguageSwitcher();
     this.setupModals();
