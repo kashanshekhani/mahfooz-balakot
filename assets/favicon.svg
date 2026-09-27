@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2F6FE4"/>
+      <stop offset="100%" stop-color="#2FA84F"/>
+    </linearGradient>
+    <filter id="dropShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  
+  <!-- Outer Shield Container -->
+  <rect width="64" height="64" rx="16" fill="#1B2A4A"/>
+  
+  <!-- Shield Emblem -->
+  <path d="M32 10 L48 16 V28 C48 39.5 41.2 49.8 32 54 C22.8 49.8 16 39.5 16 28 V16 Z" 
+        fill="url(#shieldGrad)" 
+        filter="url(#dropShadow)"/>
+
+  <!-- Mountain Peaks (Balakot Valley Silhouette) -->
+  <path d="M22 36 L28 27 L33 33 L38 24 L45 36 Z" 
+        fill="#FFFFFF" 
+        opacity="0.95"/>
+
+  <!-- Heart / Community Care Center Indicator -->
+  <path d="M32 45 C32 45 26 40.5 26 37 C26 35 27.8 33.5 29.8 33.5 C31 33.5 32 34.2 32 34.2 C32 34.2 33 33.5 34.2 33.5 C36.2 33.5 38 35 38 37 C38 40.5 32 45 32 45 Z" 
+        fill="#E0433D"/>
+</svg>

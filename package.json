@@ -1,0 +1,21 @@
+{
+  "name": "mahfooz-balakot",
+  "version": "1.0.0",
+  "description": "Mahfooz Balakot - Community Earthquake Preparedness & Response Network",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "preview": "node server.js"
+  },
+  "keywords": [
+    "balakot",
+    "earthquake",
+    "disaster-response",
+    "community-safety",
+    "preparedness"
+  ],
+  "author": "Mahfooz Balakot Community",
+  "license": "MIT"
+}

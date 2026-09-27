@@ -1,0 +1,288 @@
+/* ==========================================================================
+   MAHFOOZ BALAKOT - LEAFLET MAP & PIN STYLES
+   No long em dashes used.
+   ========================================================================== */
+
+.custom-leaflet-marker {
+  background: transparent;
+  border: none;
+}
+
+.custom-map-pin {
+  width: 38px;
+  height: 38px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  position: relative;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.custom-map-pin:hover {
+  transform: rotate(-45deg) scale(1.15);
+  z-index: 999;
+}
+
+.pin-inner {
+  transform: rotate(45deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pin-danger { background: linear-gradient(135deg, #FF5B55 0%, #E0433D 100%); }
+.pin-warning { background: linear-gradient(135deg, #FFA94D 0%, #F0973B 100%); }
+.pin-safe { background: linear-gradient(135deg, #43C667 0%, #2FA84F 100%); }
+.pin-purple { background: linear-gradient(135deg, #967AF0 0%, #7C5CE0 100%); }
+.pin-water { background: linear-gradient(135deg, #5AC1F3 0%, #3DA5D9 100%); }
+.pin-orange { background: linear-gradient(135deg, #FFA048 0%, #F0973B 100%); }
+.pin-navy { background: linear-gradient(135deg, #2D4474 0%, #1B2A4A 100%); }
+.pin-blue { background: linear-gradient(135deg, #4B87F2 0%, #2F6FE4 100%); }
+
+.pin-pulse {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50% 50% 50% 0;
+  background-color: inherit;
+  opacity: 0.6;
+  animation: markerPulse 2s infinite ease-out;
+  z-index: -1;
+}
+
+@keyframes markerPulse {
+  0% { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* User Location Marker */
+.user-pin-wrap {
+  background: transparent;
+  border: none;
+}
+
+.user-position-marker {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: #2F6FE4;
+  border: 3px solid #FFFFFF;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.user-pulse {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #2F6FE4;
+  animation: userRadar 1.8s infinite ease-out;
+}
+
+@keyframes userRadar {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(2.8); opacity: 0; }
+}
+
+/* Map Popups */
+.leaflet-popup-content-wrapper {
+  padding: 0;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--shadow-lg) !important;
+  overflow: hidden;
+  border: 1px solid var(--border-light);
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  line-height: 1.4 !important;
+}
+
+.map-popup-card {
+  padding: 16px;
+  font-family: var(--font-main);
+}
+
+.popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.popup-photo-wrap {
+  margin: -16px -16px 10px -16px;
+  height: 120px;
+  overflow: hidden;
+}
+
+.popup-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.popup-title {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--navy-primary);
+  margin-bottom: 4px;
+}
+
+.popup-desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+.popup-facilities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.facility-pill {
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  background: var(--surface-subtle);
+  border-radius: 4px;
+  color: var(--text-muted);
+}
+
+.popup-meta {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 12px;
+  padding-top: 6px;
+  border-top: 1px solid var(--border-light);
+}
+
+.popup-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.btn-popup-verify {
+  flex: 1;
+  background: var(--surface-subtle);
+  border: 1px solid var(--border-light);
+  color: var(--navy-primary);
+  padding: 7px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-popup-verify:hover {
+  background: var(--border-light);
+}
+
+.btn-popup-route, .btn-popup-directions {
+  flex: 1;
+  background: var(--blue-accent);
+  color: #FFFFFF;
+  border: none;
+  padding: 7px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.popup-badge-green {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--green-safe);
+  background: var(--green-subtle);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.status-verified {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--green-safe);
+}
+
+.status-unverified {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #D97706;
+}
+
+/* Fullscreen Map Controls & Overlays */
+.map-overlay-tools {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 500;
+  display: flex;
+  gap: 8px;
+}
+
+.map-search-input {
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-md);
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  width: 260px;
+  outline: none;
+}
+
+.map-recenter-btn {
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-md);
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.map-legend-card {
+  position: absolute;
+  bottom: 20px;
+  right: 16px;
+  z-index: 500;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-light);
+  font-size: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: var(--navy-primary);
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}

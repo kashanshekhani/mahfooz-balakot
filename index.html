@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Mahfooz Balakot - Community Earthquake Preparedness & Response Network</title>
+  <meta name="description" content="A lightweight, community-owned earthquake safety network for Balakot, Khyber Pakhtunkhwa. Real-time hazard mapping, safe check-in, verified shelters, and volunteer coordination.">
+  <meta name="theme-color" content="#1B2A4A">
+
+  <!-- Google Fonts: Plus Jakarta Sans, Outfit, Noto Nastaliq Urdu, Baloo Bhaijaan 2 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;600;700;800&family=Noto+Nastaliq+Urdu:wght@500;700&family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Favicon / Top Tab Icon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/favicon.svg">
+
+  <!-- Leaflet Map CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+  <!-- Core App Stylesheets -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/map.css">
+  <link rel="stylesheet" href="css/rtl.css">
+</head>
+<body>
+
+  <!-- APP ROOT SHELL -->
+  <div id="app">
+
+    <!-- DESKTOP SIDEBAR -->
+    <aside class="sidebar" aria-label="Main Navigation">
+      <div>
+        <!-- Brand Section -->
+        <div class="brand-section">
+          <div class="brand-logo-badge">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              <path d="m8 14 3-3 2 2 3-4"></path>
+            </svg>
+          </div>
+          <div class="brand-info">
+            <h1 data-i18n="appName">Mahfooz Balakot</h1>
+            <p data-i18n="tagline">Together We Are Mahfooz</p>
+          </div>
+        </div>
+
+        <!-- Navigation Links -->
+        <nav class="sidebar-nav">
+          <a class="nav-link active" data-tab="dashboard">
+            <span class="nav-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </span>
+            <span data-i18n="navDashboard">Dashboard</span>
+          </a>
+
+          <a class="nav-link" data-tab="map">
+            <span class="nav-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+            </span>
+            <span data-i18n="navRiskMap">Risk Map</span>
+            <span class="nav-badge" id="sideBadgeHazards">LIVE</span>
+          </a>
+
+          <a class="nav-link" data-tab="checkin">
+            <span class="nav-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </span>
+            <span data-i18n="navSafeCheckin">Safe Check-In</span>
+          </a>
+
+          <a class="nav-link" data-tab="contacts">
+            <span class="nav-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </span>
+            <span data-i18n="navContacts">Emergency Contacts</span>
+          </a>
+
+          <a class="nav-link" data-tab="safezones">
+            <span class="nav-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </span>
+            <span data-i18n="navSafeZones">Find Safe Zone</span>
+          </a>
+
+          <a class="nav-link" data-tab="volunteers">
+            <span class="nav-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+            </span>
+            <span data-i18n="navVolunteers">Volunteers</span>
+          </a>
+
+          <a class="nav-link" data-tab="preparedness">
+            <span class="nav-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            </span>
+            <span data-i18n="navPreparedness">Preparedness</span>
+          </a>
+
+          <a class="nav-link" data-tab="reports">
+            <span class="nav-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </span>
+            <span data-i18n="navReports">Reports & Updates</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Sidebar Footer with Language Switcher -->
+      <div class="sidebar-footer">
+        <div class="language-switcher-card">
+          <span class="lang-label" data-i18n="navLanguage">Language / زبان</span>
+          <div class="lang-btn-group">
+            <button class="lang-btn active" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="ur">اردو</button>
+            <button class="lang-btn" data-lang="ps">پښتو</button>
+          </div>
+        </div>
+
+        <div class="sidebar-creds">
+          <p>Balakot Community Network</p>
+          <p style="opacity:0.6;">Zero government reliance</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN APP VIEWPORT -->
+    <main class="main-wrapper">
+
+      <!-- MOBILE TOP HEADER (shown on screen <= 768px) -->
+      <header class="mobile-header">
+        <div class="mobile-brand" data-navigate="dashboard">
+          <div class="brand-logo-badge" style="width:34px; height:34px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h1 data-i18n="appName">Mahfooz Balakot</h1>
+        </div>
+
+        <div class="mobile-header-actions">
+          <select id="mobileLangSelect" class="mobile-lang-select" aria-label="Select Language">
+            <option value="en">English</option>
+            <option value="ur">اردو</option>
+            <option value="ps">پښتو</option>
+          </select>
+          <button class="btn-mobile-sos" data-i18n="callSOS">SOS 1122</button>
+        </div>
+      </header>
+
+      <!-- DESKTOP TOP BAR -->
+      <header class="top-bar">
+        <div class="top-bar-left">
+          <div class="location-indicator">
+            <span class="location-pin-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </span>
+            <span data-i18n="locationHeading">Balakot, Khyber Pakhtunkhwa</span>
+          </div>
+        </div>
+
+        <div class="top-bar-right">
+          <div id="topStatusBadge" class="status-badge-pill status-normal">
+            <span class="pulse-dot"></span>
+            <span data-i18n="statusNormal">Community Status: Normal</span>
+          </div>
+
+          <button class="btn-sos-top" id="btnTopSosAction">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span data-i18n="callSOS">Emergency SOS</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- DYNAMIC PAGE VIEWS -->
+      <div class="page-container">
+
+        <!-- ================================================================ -->
+        <!-- SCREEN 1: DASHBOARD -->
+        <!-- ================================================================ -->
+        <section id="page-dashboard" class="page-view" style="display: block;">
+
+          <!-- Status Banner -->
+          <div id="communityStatusBanner" class="status-banner normal">
+            <div class="status-banner-content">
+              <div class="status-icon-badge">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              <div class="status-text-block">
+                <h3 class="status-title" data-i18n="statusNormal">Community Status: Normal</h3>
+                <p class="status-sub" data-i18n="statusNormalSub">No major seismic activity recorded in last 6 hours</p>
+              </div>
+            </div>
+            <div class="status-banner-actions">
+              <button class="btn-refresh-status" onclick="window.app.render(); window.app.showToast('Data refreshed.', 'info');">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+                <span data-i18n="refreshStatus">Refresh</span>
+              </button>
+              <button id="btnToggleAlert" class="btn-toggle-demo-alert" title="Toggle between Normal and Alert state for demo">
+                ⚡ Demo Alert Toggle
+              </button>
+            </div>
+          </div>
+
+          <!-- 4 Core Quick Actions Grid (2x2 on Mobile, 4x1 on Desktop) -->
+          <div class="quick-actions-grid">
+            <!-- 1. Report Hazard (Red) -->
+            <div class="action-card action-hazard btn-action-report" id="quickActionReport">
+              <div class="action-card-header">
+                <div class="action-icon-wrap">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                </div>
+                <span class="action-arrow">→</span>
+              </div>
+              <div class="action-card-body">
+                <h4 data-i18n="actionReportHazard">Report Hazard</h4>
+                <p>Damaged wall or road</p>
+              </div>
+            </div>
+
+            <!-- 2. I'm Safe (Green) -->
+            <div class="action-card action-safe btn-action-safe" id="quickActionSafe">
+              <div class="action-card-header">
+                <div class="action-icon-wrap">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                </div>
+                <span class="action-arrow">→</span>
+              </div>
+              <div class="action-card-body">
+                <h4 data-i18n="actionImSafe">I Am Safe</h4>
+                <p>Check in for family</p>
+              </div>
+            </div>
+
+            <!-- 3. Find Safe Zone (Blue) -->
+            <div class="action-card action-zone btn-action-zone" id="quickActionZone">
+              <div class="action-card-header">
+                <div class="action-icon-wrap">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <span class="action-arrow">→</span>
+              </div>
+              <div class="action-card-body">
+                <h4 data-i18n="actionFindSafeZone">Find Safe Zone</h4>
+                <p>Nearest open ground</p>
+              </div>
+            </div>
+
+            <!-- 4. Emergency Help (Purple) -->
+            <div class="action-card action-help btn-action-help" id="quickActionHelp">
+              <div class="action-card-header">
+                <div class="action-icon-wrap">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </div>
+                <span class="action-arrow">→</span>
+              </div>
+              <div class="action-card-body">
+                <h4 data-i18n="actionEmergencyHelp">Emergency Help</h4>
+                <p>Doctors & 4x4 drivers</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5 Live Metrics Row (Swipeable on Mobile) -->
+          <div class="metrics-row">
+            <div class="metric-pill-card metric-unsafe">
+              <div class="metric-icon-small">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/></svg>
+              </div>
+              <div class="metric-data">
+                <div class="metric-count" id="count-unsafe">2</div>
+                <div class="metric-label" data-i18n="counterUnsafe">Unsafe Buildings</div>
+              </div>
+            </div>
+
+            <div class="metric-pill-card metric-blocked">
+              <div class="metric-icon-small">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+              </div>
+              <div class="metric-data">
+                <div class="metric-count" id="count-blocked">3</div>
+                <div class="metric-label" data-i18n="counterBlocked">Blocked Roads</div>
+              </div>
+            </div>
+
+            <div class="metric-pill-card metric-safe">
+              <div class="metric-icon-small">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div class="metric-data">
+                <div class="metric-count" id="count-safezones">4</div>
+                <div class="metric-label" data-i18n="counterSafeZones">Safe Zones</div>
+              </div>
+            </div>
+
+            <div class="metric-pill-card metric-water">
+              <div class="metric-icon-small">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+              </div>
+              <div class="metric-data">
+                <div class="metric-count" id="count-water">2</div>
+                <div class="metric-label" data-i18n="counterWater">Water Points</div>
+              </div>
+            </div>
+
+            <div class="metric-pill-card metric-volunteers">
+              <div class="metric-icon-small">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+              </div>
+              <div class="metric-data">
+                <div class="metric-count" id="count-volunteers">6</div>
+                <div class="metric-label" data-i18n="counterVolunteers">Active Volunteers</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2-Column Dashboard Content -->
+          <div class="dashboard-grid">
+            <!-- Left Wide Column: Map & Hazard Stream -->
+            <div class="dashboard-main-col">
+              <!-- Embedded Interactive Map Card -->
+              <div class="content-card">
+                <div class="card-header">
+                  <div class="card-header-left">
+                    <h3 class="card-title" data-i18n="navRiskMap">Live Balakot Risk Map</h3>
+                    <span class="badge badge-safe">Real-Time</span>
+                  </div>
+                  <span class="card-action-link" data-navigate="map">
+                    Full Screen Map →
+                  </span>
+                </div>
+
+                <div class="map-filter-bar">
+                  <button class="filter-chip active" data-filter="all" data-i18n="filterAll">All</button>
+                  <button class="filter-chip" data-filter="unsafe" data-i18n="filterUnsafe">⚠️ Unsafe</button>
+                  <button class="filter-chip" data-filter="roads" data-i18n="filterRoads">🚧 Blocked Roads</button>
+                  <button class="filter-chip" data-filter="safezones" data-i18n="filterSafeZones">🌲 Safe Zones</button>
+                  <button class="filter-chip" data-filter="medical" data-i18n="filterMedical">➕ Medical</button>
+                  <button class="filter-chip" data-filter="water" data-i18n="filterWater">💧 Water Points</button>
+                </div>
+
+                <div class="dashboard-map-wrapper">
+                  <div id="dashboardMap"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Resilient Balakot Hero + Preparedness + Recent Activity -->
+            <div class="dashboard-side-col">
+              <!-- Authentic Balakot Resilient Community Hero Card -->
+              <div class="hero-community-card">
+                <img src="assets/balakot_landscape.jpg" alt="Balakot Valley" class="hero-bg-img" />
+                <div class="hero-overlay"></div>
+                <div class="hero-content">
+                  <span class="hero-tag" data-i18n="tagline">Together We Are Mahfooz</span>
+                  <h3 class="hero-title" data-i18n="heroTitle">Our Home, Our Responsibility</h3>
+                  <p class="hero-desc" data-i18n="heroDesc">
+                    Balakot rebuilt with community courage. Mahfooz Balakot empowers every resident with real-time safety, without waiting for bureaucracy.
+                  </p>
+                  <button class="btn-hero-cta" data-navigate="preparedness">
+                    <span data-i18n="learnMore">Read Safety Guide</span> →
+                  </button>
+                </div>
+              </div>
+
+              <!-- Preparedness Widget -->
+              <div class="content-card">
+                <div class="card-header">
+                  <div class="card-header-left">
+                    <h3 class="card-title" data-i18n="navPreparedness">Household Preparedness</h3>
+                  </div>
+                  <span class="card-action-link" data-navigate="preparedness">Full Checklist →</span>
+                </div>
+                <div class="card-body">
+                  <div class="prep-progress-header">
+                    <span style="font-size: 0.85rem; font-weight:600; color:var(--text-secondary);" data-i18n="checklistProgress">Readiness Level</span>
+                    <span class="prep-badge-score" id="prepPercentText">70%</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-fill" id="prepProgressFill" style="width: 70%;"></div>
+                  </div>
+                  <div class="mini-checklist-list" id="miniChecklistList">
+                    <!-- Populated via JS -->
+                  </div>
+                </div>
+              </div>
+
+              <!-- Recent Activity Feed -->
+              <div class="content-card">
+                <div class="card-header">
+                  <div class="card-header-left">
+                    <h3 class="card-title" data-i18n="recentActivity">Recent Community Activity</h3>
+                  </div>
+                  <span class="card-action-link" data-navigate="reports" data-i18n="viewAllActivity">View All →</span>
+                </div>
+                <div class="card-body">
+                  <div class="activity-feed-list" id="recentActivityList">
+                    <!-- Populated via JS -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ================================================================ -->
+        <!-- SCREEN 2: FULLSCREEN RISK MAP -->
+        <!-- ================================================================ -->
+        <section id="page-map" class="page-view" style="display: none;">
+          <div class="mobile-subpage-header">
+            <button class="btn-mobile-back" data-navigate="dashboard">
+              ← <span>Back to Home</span>
+            </button>
+          </div>
+
+          <div class="content-card" style="height: calc(100vh - 150px); min-height: 480px; position: relative;">
+            <div class="card-header">
+              <div class="card-header-left">
+                <h3 class="card-title" data-i18n="navRiskMap">Interactive Balakot Risk Map</h3>
+              </div>
+              <button class="btn-primary btn-action-report" style="padding: 6px 12px; font-size: 0.8rem;">
+                + <span data-i18n="actionReportHazard">Report</span>
+              </button>
+            </div>
+
+            <div class="map-filter-bar">
+              <button class="filter-chip active" data-filter="all" data-i18n="filterAll">All Pins</button>
+              <button class="filter-chip" data-filter="unsafe" data-i18n="filterUnsafe">⚠️ Unsafe</button>
+              <button class="filter-chip" data-filter="roads" data-i18n="filterRoads">🚧 Blocked Roads</button>
+              <button class="filter-chip" data-filter="safezones" data-i18n="filterSafeZones">🌲 Safe Zones</button>
+              <button class="filter-chip" data-filter="medical" data-i18n="filterMedical">➕ Medical</button>
+              <button class="filter-chip" data-filter="water" data-i18n="filterWater">💧 Water Points</button>
+              <button class="filter-chip" data-filter="food" data-i18n="filterFood">🍽 Food & Supplies</button>
+            </div>
+
+            <div style="height: calc(100% - 100px); width: 100%; position: relative;">
+              <!-- Map Search Overlay -->
+              <div class="map-overlay-tools">
+                <input type="text" id="mapSearchInput" class="map-search-input" placeholder="Search area in Balakot..." data-i18n-placeholder="searchPlaceholder" />
+                <button class="map-recenter-btn" id="btnMapRecenter" title="Recenter on Balakot">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/></svg>
+                </button>
+              </div>
+
+              <!-- Map Legend Overlay -->
+              <div class="map-legend-card">
+                <div class="legend-item"><span class="legend-dot" style="background:#E0433D;"></span> Unsafe Building</div>
+                <div class="legend-item"><span class="legend-dot" style="background:#F0973B;"></span> Blocked Road</div>
+                <div class="legend-item"><span class="legend-dot" style="background:#2FA84F;"></span> Safe Zone</div>
+                <div class="legend-item"><span class="legend-dot" style="background:#7C5CE0;"></span> Medical Post</div>
+                <div class="legend-item"><span class="legend-dot" style="background:#3DA5D9;"></span> Clean Water</div>
+              </div>
+
+              <div id="fullscreenMap"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================ -->
+        <!-- SCREEN 3: SAFE CHECK-IN -->
+        <!-- ================================================================ -->
+        <section id="page-checkin" class="page-view" style="display: none;">
+          <div class="mobile-subpage-header">
+            <button class="btn-mobile-back" data-navigate="dashboard">
+              ← <span>Back to Home</span>
+            </button>
+          </div>
+
+          <div class="checkin-hero-box">
+            <h2 style="font-size: 1.35rem; font-weight:800; margin-bottom: 4px;" data-i18n="checkinTitle">Family & Community Safety Check-In</h2>
+            <p class="checkin-hero-sub" data-i18n="checkinSubtitle">
+              Let your loved ones and community know you are safe with one single tap.
+            </p>
+
+            <button id="btnMarkSafeBig" class="btn-big-safe-cta">
+              <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span data-i18n="btnMarkSafe">I Am Safe & Well</span>
+            </button>
+
+            <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap; justify-content: center;">
+              <span id="mySafetyStatusText" class="status-badge unknown" data-i18n="statusUnknown">Status Unknown</span>
+              <span id="myLastCheckinTime" style="font-size: 0.8rem; opacity: 0.85;">Tap button above to mark safe</span>
+            </div>
+
+            <button id="btnShareWhatsApp" class="btn-whatsapp" style="margin-top: 16px; padding: 10px 18px; width:100%; max-width:280px;">
+              💬 <span data-i18n="shareStatusWhatsApp">Share on WhatsApp</span>
+            </button>
+          </div>
+
+          <!-- Family Circle Section -->
+          <div class="content-card">
+            <div class="card-header">
+              <div class="card-header-left">
+                <h3 class="card-title" data-i18n="familyCircle">Family & Household Circle</h3>
+                <span class="badge badge-safe">Sync Active</span>
+              </div>
+              <button class="btn-primary" id="btnOpenAddFamilyModal" style="padding: 6px 12px; font-size: 0.8rem;">
+                + <span data-i18n="btnAddFamily">Add Member</span>
+              </button>
+            </div>
+            <div class="card-body">
+              <div class="family-grid" id="familyMembersGrid">
+                <!-- Populated via JS -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================ -->
+        <!-- SCREEN 4: EMERGENCY CONTACTS DIRECTORY -->
+        <!-- ================================================================ -->
+        <section id="page-contacts" class="page-view" style="display: none;">
+          <div class="mobile-subpage-header">
+            <button class="btn-mobile-back" data-navigate="dashboard">
+              ← <span>Back to Home</span>
+            </button>
+          </div>
+
+          <div class="content-card" style="margin-bottom: 16px; padding: 16px;">
+            <h2 style="font-size: 1.25rem; font-weight:800; color:var(--navy-primary); margin-bottom: 2px;" data-i18n="contactsTitle">
+              Emergency Contacts & Responders
+            </h2>
+            <p style="font-size: 0.8rem; color:var(--text-muted);" data-i18n="contactsSubtitle">
+              Direct telephone numbers of registered doctors, 4x4 drivers, and 1122 in Balakot.
+            </p>
+          </div>
+
+          <!-- Tabs -->
+          <div class="tabs-nav contacts-tabs">
+            <button class="tab-btn active" data-tab="all" data-i18n="tabAllContacts">All</button>
+            <button class="tab-btn" data-tab="doctors" data-i18n="tabDoctors">Doctors</button>
+            <button class="tab-btn" data-tab="drivers" data-i18n="tabDrivers">4x4 Drivers</button>
+            <button class="tab-btn" data-tab="volunteers" data-i18n="tabVolunteers">First Aid</button>
+            <button class="tab-btn" data-tab="hotlines" data-i18n="tabHotlines">Hotlines</button>
+          </div>
+
+          <div class="contacts-grid" id="emergencyContactsGrid">
+            <!-- Populated via JS -->
+          </div>
+        </section>
+
+        <!-- ================================================================ -->
+        <!-- SCREEN 5: FIND SAFE ZONE -->
+        <!-- ================================================================ -->
+        <section id="page-safezones" class="page-view" style="display: none;">
+          <div class="mobile-subpage-header">
+            <button class="btn-mobile-back" data-navigate="dashboard">
+              ← <span>Back to Home</span>
+            </button>
+          </div>
+
+          <div class="content-card" style="margin-bottom: 16px; padding: 16px;">
+            <h2 style="font-size: 1.25rem; font-weight:800; color:var(--navy-primary); margin-bottom: 2px;" data-i18n="safeZoneTitle">
+              Verified Safe Assembly Zones
+            </h2>
+            <p style="font-size: 0.8rem; color:var(--text-muted);" data-i18n="safeZoneSubtitle">
+              Open grounds verified for zero building collapse and river flood hazards.
+            </p>
+          </div>
+
+          <div class="safezones-grid" id="safeZonesDirectoryGrid">
+            <!-- Populated via JS -->
+          </div>
+        </section>
+
+        <!-- ================================================================ -->
+        <!-- SCREEN 6: VOLUNTEERS (RESPONDER NETWORK) -->
+        <!-- ================================================================ -->
+        <section id="page-volunteers" class="page-view" style="display: none;">
+          <div class="mobile-subpage-header">
+            <button class="btn-mobile-back" data-navigate="dashboard">
+              ← <span>Back to Home</span>
+            </button>
+          </div>
+
+          <div class="content-card" style="margin-bottom: 16px; padding: 18px; background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-primary) 100%); color:#FFF;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+              <div>
+                <h2 style="font-size: 1.25rem; font-weight:800; color:#FFF; margin-bottom: 4px;" data-i18n="volunteersTitle">Community Responders</h2>
+                <p style="font-size: 0.8rem; opacity:0.85; max-width:500px;" data-i18n="volunteersSubtitle">
+                  Join our self-organizing Balakot network. Neighbors helping neighbors.
+                </p>
+              </div>
+              <button class="btn-primary" id="btnOpenVolunteerModal" style="background:var(--green-safe); padding: 10px 18px; font-size:0.85rem;">
+                + <span data-i18n="btnJoinVolunteers">Register as Volunteer</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="contacts-grid" id="volunteersRosterGrid">
+            <!-- Populated via JS -->
+          </div>
+        </section>
+
+        <!-- ================================================================ -->
+        <!-- SCREEN 7: PREPAREDNESS CHECKLIST & GUIDES -->
+        <!-- ================================================================ -->
+        <section id="page-preparedness" class="page-view" style="display: none;">
+          <div class="mobile-subpage-header">
+            <button class="btn-mobile-back" data-navigate="dashboard">
+              ← <span>Back to Home</span>
+            </button>
+          </div>
+
+          <div class="prep-guide-container">
+            <!-- Left: 10-Point Readiness Checklist -->
+            <div class="content-card">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title" data-i18n="prepTitle">Household Readiness Checklist</h3>
+                  <span class="card-subtitle">Tap items to track preparedness</span>
+                </div>
+                <span class="badge badge-safe" id="fullPrepScoreBadge">7/10 Done</span>
+              </div>
+              <div class="card-body">
+                <div class="progress-track" style="height: 10px; margin-bottom: 16px;">
+                  <div class="progress-fill" id="fullPrepProgressFill" style="width: 70%;"></div>
+                </div>
+                <div id="fullChecklistList">
+                  <!-- Populated via JS -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: 3-Stage Survival Guide -->
+            <div class="content-card">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">Earthquake Guide</h3>
+                  <span class="card-subtitle">Survival protocols for mountain stone structures</span>
+                </div>
+                <button class="btn-refresh-status" id="btnPrintPocketCard">
+                  🖨️ <span data-i18n="btnPrintCard">Card</span>
+                </button>
+              </div>
+              <div class="card-body">
+                <div class="tabs-nav guide-tabs" style="margin-bottom: 14px;">
+                  <button class="tab-btn active" data-tab="before" data-i18n="guideTabBefore">1. Before</button>
+                  <button class="tab-btn" data-tab="during" data-i18n="guideTabDuring">2. During</button>
+                  <button class="tab-btn" data-tab="after" data-i18n="guideTabAfter">3. After</button>
+                </div>
+                <div id="guideStepsContainer">
+                  <!-- Populated via JS -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================ -->
+        <!-- SCREEN 8: REPORTS & UPDATES (COMMUNITY LOG) -->
+        <!-- ================================================================ -->
+        <section id="page-reports" class="page-view" style="display: none;">
+          <div class="mobile-subpage-header">
+            <button class="btn-mobile-back" data-navigate="dashboard">
+              ← <span>Back to Home</span>
+            </button>
+          </div>
+
+          <div class="content-card">
+            <div class="card-header">
+              <div>
+                <h3 class="card-title" data-i18n="navReports">Community Activity Log</h3>
+                <span class="card-subtitle">Verified hazard reports, road updates, and check-ins</span>
+              </div>
+              <button class="btn-danger btn-action-report" style="padding: 7px 14px; font-size: 0.8rem;">
+                + <span data-i18n="actionReportHazard">Report</span>
+              </button>
+            </div>
+
+            <div class="tabs-nav reports-filter-tabs" style="padding: 0 16px; margin-bottom: 12px;">
+              <button class="tab-btn active" data-status="all">All</button>
+              <button class="tab-btn" data-status="verified">Verified</button>
+              <button class="tab-btn" data-status="unverified">Pending</button>
+              <button class="tab-btn" data-status="resolved">Resolved</button>
+            </div>
+
+            <div class="card-body" style="padding-top: 0;">
+              <div id="communityReportsTimeline">
+                <!-- Populated via JS -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- MOBILE BOTTOM TAB BAR (fixed thumb reach: 5 Core Tabs) -->
+    <nav class="bottom-nav">
+      <div class="bottom-nav-item active" data-tab="dashboard">
+        <span class="b-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </span>
+        <span data-i18n="navDashboard">Home</span>
+      </div>
+
+      <div class="bottom-nav-item" data-tab="map">
+        <span class="b-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+        </span>
+        <span data-i18n="navRiskMap">Map</span>
+      </div>
+
+      <div class="bottom-nav-item" data-tab="checkin">
+        <span class="b-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </span>
+        <span data-i18n="navSafeCheckin">Check-In</span>
+      </div>
+
+      <div class="bottom-nav-item" data-tab="contacts">
+        <span class="b-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </span>
+        <span data-i18n="navContacts">Contacts</span>
+      </div>
+
+      <div class="bottom-nav-item" id="btnBottomMore" data-tab="more">
+        <span class="b-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+        </span>
+        <span>More</span>
+      </div>
+    </nav>
+
+  </div>
+
+  <!-- ================================================================ -->
+  <!-- MODAL: MOBILE "MORE" DRAWER -->
+  <!-- ================================================================ -->
+  <div id="modalMobileMore" class="modal-backdrop">
+    <div class="modal-window">
+      <div class="sheet-handle-bar"></div>
+      <div class="modal-header">
+        <h3>Community Quick Access</h3>
+        <button class="btn-modal-close">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="mobile-more-grid">
+          <div class="mobile-more-item" data-navigate="safezones">
+            <div class="mobile-more-icon" style="background:var(--blue-subtle); color:var(--blue-accent);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h4 data-i18n="navSafeZones">Find Safe Zone</h4>
+          </div>
+
+          <div class="mobile-more-item" data-navigate="volunteers">
+            <div class="mobile-more-icon" style="background:var(--purple-subtle); color:var(--purple-help);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+            </div>
+            <h4 data-i18n="navVolunteers">Volunteers Roster</h4>
+          </div>
+
+          <div class="mobile-more-item" data-navigate="preparedness">
+            <div class="mobile-more-icon" style="background:var(--green-subtle); color:var(--green-safe);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            </div>
+            <h4 data-i18n="navPreparedness">Preparedness Guide</h4>
+          </div>
+
+          <div class="mobile-more-item" data-navigate="reports">
+            <div class="mobile-more-icon" style="background:var(--orange-subtle); color:var(--orange-supply);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <h4 data-i18n="navReports">Community Reports</h4>
+          </div>
+        </div>
+
+        <div style="margin-top: 10px; display:flex; flex-direction:column; gap:8px;">
+          <button class="btn-refresh-status" id="btnMobilePocketCard" style="width:100%; justify-content:center; padding:10px;">
+            🖨️ View Pocket Emergency Card
+          </button>
+          <button class="btn-danger" id="btnMobileSosModal" style="width:100%; justify-content:center; padding:10px;">
+            🚨 Emergency Hotlines (1122 / 115)
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================ -->
+  <!-- MODAL: REPORT HAZARD -->
+  <!-- ================================================================ -->
+  <div id="modalReportHazard" class="modal-backdrop">
+    <div class="modal-window">
+      <div class="sheet-handle-bar"></div>
+      <div class="modal-header">
+        <h3 data-i18n="reportTitle">Report a Hazard in Balakot</h3>
+        <button class="btn-modal-close">✕</button>
+      </div>
+      <form id="hazardReportForm">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label" data-i18n="hazardCategory">Hazard Category</label>
+            <select id="reportCategory" class="form-control" required>
+              <option value="unsafe_building" data-i18n="catUnsafeBuilding">Damaged / Unsafe Building</option>
+              <option value="blocked_road" data-i18n="catBlockedRoad">Blocked Road / Rockfall</option>
+              <option value="unsafe_bridge" data-i18n="catUnsafeBridge">Damaged Bridge / Crossing</option>
+              <option value="fire_gas" data-i18n="catFireGas">Gas Leak / Fire Risk</option>
+              <option value="landslide" data-i18n="catLandslide">Hillside Slump / Landslide</option>
+              <option value="other" data-i18n="catOther">Other Hazard</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Brief Hazard Title</label>
+            <input type="text" id="reportTitleInput" class="form-control" placeholder="e.g. Wall Crack near Main Market" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" data-i18n="hazardLocation">Location / Landmark</label>
+            <input type="text" id="reportLocationInput" class="form-control" placeholder="e.g. Main Bazaar near Old Post Office" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" data-i18n="hazardDesc">Description & Details</label>
+            <textarea id="reportDescInput" class="form-control" placeholder="Describe damage severity, whether vehicles can pass, or safe alternate route..." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" data-i18n="hazardUrgency">Urgency Level</label>
+            <select id="reportUrgency" class="form-control">
+              <option value="high" data-i18n="urgencyHigh">High Priority (Immediate Danger)</option>
+              <option value="medium" data-i18n="urgencyMedium">Medium Priority (Pass with Caution)</option>
+              <option value="low" data-i18n="urgencyLow">Low Priority (Monitor)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" data-i18n="hazardPhoto">Attach Photo (Optional)</label>
+            <div style="display:flex; gap:8px;">
+              <input type="file" id="photoInput" accept="image/*" style="display:none;" />
+              <button type="button" id="btnUploadPhoto" class="btn-refresh-status" style="flex:1;">
+                📷 Upload Photo
+              </button>
+              <button type="button" id="btnUseSamplePhoto" class="btn-refresh-status" style="flex:1;">
+                🖼️ Demo Sample
+              </button>
+            </div>
+            <div id="reportPhotoPreview"></div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-refresh-status btn-modal-cancel" data-i18n="cancel">Cancel</button>
+          <button type="submit" class="btn-danger" data-i18n="btnSubmitReport">Submit Hazard Report</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================================================================ -->
+  <!-- MODAL: REGISTER AS VOLUNTEER -->
+  <!-- ================================================================ -->
+  <div id="modalJoinVolunteer" class="modal-backdrop">
+    <div class="modal-window">
+      <div class="sheet-handle-bar"></div>
+      <div class="modal-header">
+        <h3 data-i18n="btnJoinVolunteers">Join Community Responders</h3>
+        <button class="btn-modal-close">✕</button>
+      </div>
+      <form id="volunteerForm">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label" data-i18n="formVolName">Full Name</label>
+            <input type="text" id="volNameInput" class="form-control" placeholder="e.g. Asad Ullah Khan" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" data-i18n="formVolPhone">Mobile Phone Number</label>
+            <input type="tel" id="volPhoneInput" class="form-control" placeholder="e.g. +92 300 1234567" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" data-i18n="formVolRole">Your Role / Skill</label>
+            <select id="volRoleInput" class="form-control" required>
+              <option value="first_aid">Certified First Aid / Paramedic</option>
+              <option value="driver">4x4 Mountain Vehicle Driver</option>
+              <option value="doctor">Medical Doctor / Surgeon</option>
+              <option value="rescue">Search & Structural Rescue</option>
+              <option value="general">General Support / Food Distribution</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" data-i18n="formVolArea">Balakot Neighborhood / Sector</label>
+            <input type="text" id="volAreaInput" class="form-control" placeholder="e.g. Sangar Hill, College Road, Garlat" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" data-i18n="formVolVehicle">Vehicle or Special Gear (Optional)</label>
+            <input type="text" id="volVehicleInput" class="form-control" placeholder="e.g. Toyota Hilux 4x4, Rescue ropes, First Aid kit box" />
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-refresh-status btn-modal-cancel" data-i18n="cancel">Cancel</button>
+          <button type="submit" class="btn-primary" data-i18n="btnSubmitVolunteer">Join Responder Network</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================================================================ -->
+  <!-- MODAL: ADD FAMILY MEMBER -->
+  <!-- ================================================================ -->
+  <div id="modalAddFamily" class="modal-backdrop">
+    <div class="modal-window">
+      <div class="sheet-handle-bar"></div>
+      <div class="modal-header">
+        <h3 data-i18n="btnAddFamily">Add Family Member to Circle</h3>
+        <button class="btn-modal-close">✕</button>
+      </div>
+      <form id="addFamilyForm">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Member Name</label>
+            <input type="text" id="famNameInput" class="form-control" placeholder="e.g. Tariq Khan" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Relation / Household Role</label>
+            <input type="text" id="famRelationInput" class="form-control" placeholder="e.g. Father, Daughter, Spouse, Neighbor" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Primary Location in Balakot</label>
+            <input type="text" id="famLocationInput" class="form-control" placeholder="e.g. Sangar Upper Colony" required />
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-refresh-status btn-modal-cancel" data-i18n="cancel">Cancel</button>
+          <button type="submit" class="btn-primary">Add Member</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================================================================ -->
+  <!-- MODAL: EMERGENCY SOS CALL DISPATCH -->
+  <!-- ================================================================ -->
+  <div id="modalEmergencySOS" class="modal-backdrop">
+    <div class="modal-window">
+      <div class="sheet-handle-bar"></div>
+      <div class="modal-header" style="background:#FFF5F5; border-bottom: 2px solid var(--red-alert);">
+        <h3 style="color:var(--red-alert); display:flex; align-items:center; gap:8px;">
+          🚨 Emergency Hotlines & Dispatch
+        </h3>
+        <button class="btn-modal-close">✕</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:14px;">
+          Tap any number below to connect immediately in Balakot and Mansehra district.
+        </p>
+
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <a href="tel:1122" class="contact-card" style="border: 2px solid var(--red-alert); background:#FFF5F5; padding:14px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:10px;">
+              <div>
+                <h4 style="font-size:1rem; color:var(--red-alert);">Rescue 1122 KP</h4>
+                <p style="font-size:0.75rem; color:var(--text-muted);">Disaster rescue & fire</p>
+              </div>
+              <span class="btn-danger" style="padding:7px 14px; font-size:0.8rem; min-height:auto;">📞 Call 1122</span>
+            </div>
+          </a>
+
+          <a href="tel:115" class="contact-card" style="border: 1px solid var(--border-light); padding:14px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:10px;">
+              <div>
+                <h4 style="font-size:0.95rem; color:var(--navy-primary);">Edhi Ambulance</h4>
+                <p style="font-size:0.75rem; color:var(--text-muted);">Patient emergency transfer</p>
+              </div>
+              <span class="btn-primary" style="padding:7px 14px; font-size:0.8rem; min-height:auto;">📞 Call 115</span>
+            </div>
+          </a>
+
+          <a href="tel:+92997450123" class="contact-card" style="border: 1px solid var(--border-light); padding:14px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:10px;">
+              <div>
+                <h4 style="font-size:0.95rem; color:var(--navy-primary);">Balakot Police</h4>
+                <p style="font-size:0.75rem; color:var(--text-muted);">Road clearing & local safety</p>
+              </div>
+              <span class="btn-refresh-status" style="padding:7px 14px; font-size:0.8rem;">📞 Call Police</span>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-refresh-status btn-modal-cancel" data-i18n="close">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================ -->
+  <!-- MODAL: PRINTABLE POCKET EMERGENCY CARD -->
+  <!-- ================================================================ -->
+  <div id="modalPocketCard" class="modal-backdrop">
+    <div class="modal-window" style="max-width:580px;">
+      <div class="sheet-handle-bar"></div>
+      <div class="modal-header">
+        <h3>Pocket Emergency Card</h3>
+        <button class="btn-modal-close">✕</button>
+      </div>
+      <div class="modal-body" id="printableCardArea">
+        <div style="border:2px dashed var(--navy-primary); border-radius:12px; padding:16px; background:#FAFAFA;">
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #DDD; padding-bottom:8px; margin-bottom:10px;">
+            <div>
+              <h4 style="font-size:0.98rem; color:var(--navy-primary); font-weight:800;">MAHFOOZ BALAKOT EMERGENCY CARD</h4>
+              <p style="font-size:0.72rem; color:var(--text-muted);">Keep in wallet / emergency grab bag</p>
+            </div>
+            <span class="badge badge-safe" style="font-size:0.7rem;">BALAKOT, KP</span>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; font-size:0.78rem; margin-bottom:10px;">
+            <div>
+              <b>🚑 Rescue 1122:</b> 1122<br>
+              <b>🚐 Edhi Ambulance:</b> 115<br>
+              <b>👮 Balakot Police:</b> 0997-450123<br>
+              <b>🏥 DHQ Trauma:</b> 0997-300456
+            </div>
+            <div>
+              <b>🌲 Safe Zone:</b> High School Ground<br>
+              <b>💧 Safe Water:</b> Sangar Spring Tap<br>
+              <b>📞 Dr. Farooq:</b> +92 300 5678123
+            </div>
+          </div>
+
+          <div style="background:#FFF; padding:8px 10px; border-radius:6px; border:1px solid #E2E8F0; font-size:0.75rem; line-height:1.35;">
+            <b>Immediate Quake Action:</b> DROP under sturdy table, COVER head and neck, HOLD ON. Turn off LPG gas cylinder immediately after shaking stops.
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-refresh-status btn-modal-cancel" data-i18n="close">Close</button>
+        <button type="button" class="btn-primary" id="btnPrintNowAction">🖨️ Print Card</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toastContainer"></div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <!-- Application Modular Scripts -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
